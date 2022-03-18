@@ -33,7 +33,7 @@
             this.txtMenuCategory = new System.Windows.Forms.TextBox();
             this.txtMenuCost = new System.Windows.Forms.TextBox();
             this.txtMenuName = new System.Windows.Forms.TextBox();
-            this.txtMenu = new System.Windows.Forms.TextBox();
+            this.lbMenu = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,29 +81,29 @@
             this.txtMenuName.Size = new System.Drawing.Size(100, 23);
             this.txtMenuName.TabIndex = 2;
             // 
-            // txtMenu
+            // lbMenu
             // 
-            this.txtMenu.Location = new System.Drawing.Point(218, 22);
-            this.txtMenu.Multiline = true;
-            this.txtMenu.Name = "txtMenu";
-            this.txtMenu.ReadOnly = true;
-            this.txtMenu.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMenu.Size = new System.Drawing.Size(313, 131);
-            this.txtMenu.TabIndex = 2;
+            this.lbMenu.FormattingEnabled = true;
+            this.lbMenu.ItemHeight = 15;
+            this.lbMenu.Location = new System.Drawing.Point(240, 21);
+            this.lbMenu.Name = "lbMenu";
+            this.lbMenu.ScrollAlwaysVisible = true;
+            this.lbMenu.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.lbMenu.Size = new System.Drawing.Size(225, 124);
+            this.lbMenu.TabIndex = 2;
             // 
             // FormDBDebug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.txtMenu);
+            this.Controls.Add(this.lbMenu);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormDBDebug";
             this.Text = "FormDBDebug";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -114,6 +114,6 @@
         private TextBox txtMenuName;
         private TextBox txtMenuCost;
         private TextBox txtMenuCategory;
-        private TextBox txtMenu;
+        private ListBox lbMenu;
     }
 }

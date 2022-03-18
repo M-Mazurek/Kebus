@@ -26,7 +26,7 @@ namespace Kebus
         public enum MENU_ITEM_CATEGORY
         {
             FRIES,
-            SANDWICHES,
+            KEBABS,
             DESSERTS_AND_DRINKS
         }
         private static readonly FilterDefinition<BsonDocument> EMPTY_FILTER = Builders<BsonDocument>.Filter.Empty;
@@ -37,11 +37,11 @@ namespace Kebus
             MatchField("_id", id);
         private static BsonDocument ExpandoToBson(dynamic eo) =>
             BsonSerializer.Deserialize<BsonDocument>(JsonConvert.SerializeObject(eo));
-        
+
         private static (uint id, string name, float cost, MENU_ITEM_CATEGORY category) ExplodeMenuItem(BsonDocument doc) =>
-            ((uint)doc["_id"].AsInt32, 
-             doc["name"].AsString, 
-             (float)doc["cost"].AsDouble, 
+            ((uint)doc["_id"].AsInt32,
+             doc["name"].AsString,
+             (float)doc["cost"].AsDouble,
              (MENU_ITEM_CATEGORY)doc["category"].AsInt32);
 
         static Kebus()

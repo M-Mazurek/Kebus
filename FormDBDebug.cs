@@ -12,7 +12,7 @@ namespace Kebus
 {
     public partial class FormDBDebug : Form
     {
-        DataSyncer<(uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category)[]> _menuItemsSyncer;
+        DataSyncer<dynamic> _menuItemsSyncer;
         public FormDBDebug()
         {
             InitializeComponent();
@@ -26,7 +26,10 @@ namespace Kebus
                               (Kebus.MENU_ITEM_CATEGORY)int.Parse(txtMenuCategory.Text));
         }
 
-        private void RefreshMenuDisplay() =>
-            txtMenu.Text = _menuItemsSyncer.CurrentData == null ? "" : string.Join(Environment.NewLine, _menuItemsSyncer.CurrentData);
+        private void RefreshMenuDisplay()
+        {
+            (uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category)[]? arr = _menuItemsSyncer.CurrentData;
+            lbMenu.Items.AddRange(arr?.ToList().Select(x => $"{x.name} - {x.cost}zł").ToArray() ?? Array.Empty<string>());
+        }
     }
 }
