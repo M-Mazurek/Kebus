@@ -12,14 +12,13 @@ namespace Kebus
 {
     public partial class FormDBDebug : Form
     {
-        private (uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category)[]? _currentMenu;
+        DataSyncer<(uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category)[]> _menuItemsSyncer;
         public FormDBDebug()
         {
             InitializeComponent();
-            backgroundWorker1.WorkerReportsProgress = true;
-            backgroundWorker1.RunWorkerAsync();
+            _menuItemsSyncer = new(Kebus.GetMenuItems, RefreshMenuDisplay);
+            _menuItemsSyncer.RunWorkerAsync();
         }
-
         private void AddMenuItem(object sender, EventArgs e)
         {
             Kebus.AddMenuItem(txtMenuName.Text, 
@@ -27,26 +26,7 @@ namespace Kebus
                               (Kebus.MENU_ITEM_CATEGORY)int.Parse(txtMenuCategory.Text));
         }
 
-        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            while (true)
-            {
-                backgroundWorker1.ReportProgress(0);
-                Thread.Sleep(1000);
-            }
-        }
-
-        private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            var currentMenu = Kebus.GetMenuItems();
-            if (_currentMenu != currentMenu)
-            {
-                _currentMenu = currentMenu;
-                RefreshMenuDisplay();
-            }
-        }
-
         private void RefreshMenuDisplay() =>
-            txtMenu.Text = string.Join(Environment.NewLine, Kebus.GetMenuItems());
+            txtMenu.Text = _menuItemsSyncer.CurrentData == null ? "" : string.Join(Environment.NewLine, _menuItemsSyncer.CurrentData);
     }
 }

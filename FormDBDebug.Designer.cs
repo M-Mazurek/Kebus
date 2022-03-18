@@ -34,7 +34,6 @@
             this.txtMenuCost = new System.Windows.Forms.TextBox();
             this.txtMenuName = new System.Windows.Forms.TextBox();
             this.txtMenu = new System.Windows.Forms.TextBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,11 +91,6 @@
             this.txtMenu.Size = new System.Drawing.Size(313, 131);
             this.txtMenu.TabIndex = 2;
             // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
-            // 
             // FormDBDebug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -121,6 +115,5 @@
         private TextBox txtMenuCost;
         private TextBox txtMenuCategory;
         private TextBox txtMenu;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

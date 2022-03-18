@@ -21,7 +21,8 @@ namespace Kebus
         private const string DB_NAME = "KebusDB";
         private const string MENU_ITEMS_COLLECTION_NAME = "menu_items";
         private const string ORDERS_COLLECTION_NAME = "orders";
-        private const string ORDER_LOGS_COLLECTION_NAME = "order_logs"; 
+        private const string ORDER_LOGS_COLLECTION_NAME = "order_logs";
+
         public enum MENU_ITEM_CATEGORY
         {
             FRIES,
