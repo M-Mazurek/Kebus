@@ -1,4 +1,4 @@
-namespace Kebus
+﻿namespace Kebus
 {
     internal static class Program
     {
@@ -9,7 +9,10 @@ namespace Kebus
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            if (MessageBox.Show("Добро пожаловать в кебус!", "кебус", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                Application.Run(new FormDBDebug());
+            else
+                Application.Run(new Form1());
         }
     }
 }

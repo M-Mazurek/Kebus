@@ -5,7 +5,6 @@
         public Form1()
         {
             InitializeComponent();
-            MessageBox.Show("Добро пожаловать в кебус!");
         }
     }
 }
