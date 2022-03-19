@@ -33,16 +33,21 @@ namespace Kebus
         
         private static FilterDefinition<BsonDocument> MatchField<T>(string fieldName, T value) => 
             Builders<BsonDocument>.Filter.Eq(fieldName, value);
-        private static FilterDefinition<BsonDocument> MatchId(uint id) =>
+        private static FilterDefinition<BsonDocument> MatchId<T>(T id) =>
             MatchField("_id", id);
         private static BsonDocument ExpandoToBson(dynamic eo) =>
             BsonSerializer.Deserialize<BsonDocument>(JsonConvert.SerializeObject(eo));
 
-        private static (uint id, string name, float cost, MENU_ITEM_CATEGORY category) ExplodeMenuItem(BsonDocument doc) =>
+        private static (uint id, string name, float cost, MENU_ITEM_CATEGORY category) ExplodeMenuItem(BsonValue doc) =>
             ((uint)doc["_id"].AsInt32,
              doc["name"].AsString,
              (float)doc["cost"].AsDouble,
              (MENU_ITEM_CATEGORY)doc["category"].AsInt32);
+
+        private static (string id, DateTime created, (uint id, string name, float cost, MENU_ITEM_CATEGORY category)[] items) ExplodeOrder(BsonDocument doc) =>
+            (doc["_id"].AsString,
+             DateTime.Parse(doc["order_time"].AsString),
+             doc["menu_items"].AsBsonArray.ToList().Select(index => GetMenuItemById((uint)index.AsInt32)).ToArray());
 
         static Kebus()
         {
@@ -52,6 +57,8 @@ namespace Kebus
             _orders = db.GetCollection<BsonDocument>(ORDERS_COLLECTION_NAME);
             _orderLogs = db.GetCollection<BsonDocument>(ORDER_LOGS_COLLECTION_NAME);
         }
+
+        public static void Connect() { }
 
         public static void AddMenuItem(string name, float cost, MENU_ITEM_CATEGORY category)
         {
@@ -74,5 +81,31 @@ namespace Kebus
 
         public static (uint id, string name, float cost, MENU_ITEM_CATEGORY category)[] GetMenuItems() =>
             _menuItems.Find(EMPTY_FILTER).ToList().Select(doc => ExplodeMenuItem(doc)).ToArray();
+
+        private static uint NextOrderId()
+        {
+            var orders = _orders.Find(EMPTY_FILTER).ToList();
+            if (orders.Count == 0)
+                return 1;
+            return orders.Max(order => uint.Parse(order["_id"].AsString.Split('|')[0])) + 1;
+        }
+
+        public static void CreateOrder(uint[] menuItemIds)
+        {
+            if (menuItemIds.Length == 0)
+                throw new Exception("Zamówienie nie może być puste.");
+
+            dynamic order = new ExpandoObject();
+            order._id = $"{NextOrderId()}|{DateOnly.FromDateTime(DateTime.Now)}";
+            order.order_time = DateTime.Now.ToUniversalTime();
+            order.menu_items = menuItemIds;
+
+            _orders.InsertOne(ExpandoToBson(order));
+        }
+
+        public static (string id, DateTime created, (uint id, string name, float cost, MENU_ITEM_CATEGORY category)[] items) GetOrder(uint id) =>
+            ExplodeOrder(_orders.Find(MatchId(string.Join('|', id, DateOnly.FromDateTime(DateTime.Now)))).First());
+        public static (string id, DateTime created, (uint id, string name, float cost, MENU_ITEM_CATEGORY category)[] items)[] GetOrders() =>
+            _orders.Find(EMPTY_FILTER).ToList().Select(doc => ExplodeOrder(doc)).ToArray();
     }
 }

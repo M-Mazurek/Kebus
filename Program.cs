@@ -8,6 +8,9 @@
         [STAThread]
         static void Main()
         {
+            // konstruktor statyczny moment
+            Kebus.Connect();
+
             ApplicationConfiguration.Initialize();
             if (MessageBox.Show("Добро пожаловать в кебус!", "кебус", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 Application.Run(new FormDBDebug());

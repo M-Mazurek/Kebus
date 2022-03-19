@@ -34,6 +34,8 @@
             this.txtMenuCost = new System.Windows.Forms.TextBox();
             this.txtMenuName = new System.Windows.Forms.TextBox();
             this.lbMenu = new System.Windows.Forms.ListBox();
+            this.btnNewOrder = new System.Windows.Forms.Button();
+            this.txtOrders = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,18 +87,38 @@
             // 
             this.lbMenu.FormattingEnabled = true;
             this.lbMenu.ItemHeight = 15;
-            this.lbMenu.Location = new System.Drawing.Point(240, 21);
+            this.lbMenu.Location = new System.Drawing.Point(12, 159);
             this.lbMenu.Name = "lbMenu";
             this.lbMenu.ScrollAlwaysVisible = true;
             this.lbMenu.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lbMenu.Size = new System.Drawing.Size(225, 124);
+            this.lbMenu.Size = new System.Drawing.Size(200, 229);
             this.lbMenu.TabIndex = 2;
+            // 
+            // btnNewOrder
+            // 
+            this.btnNewOrder.Location = new System.Drawing.Point(36, 394);
+            this.btnNewOrder.Name = "btnNewOrder";
+            this.btnNewOrder.Size = new System.Drawing.Size(145, 23);
+            this.btnNewOrder.TabIndex = 3;
+            this.btnNewOrder.Text = "Złóż zamówienie";
+            this.btnNewOrder.UseVisualStyleBackColor = true;
+            this.btnNewOrder.Click += new System.EventHandler(this.CreateOrder);
+            // 
+            // txtOrders
+            // 
+            this.txtOrders.Location = new System.Drawing.Point(218, 19);
+            this.txtOrders.Name = "txtOrders";
+            this.txtOrders.Size = new System.Drawing.Size(254, 398);
+            this.txtOrders.TabIndex = 4;
+            this.txtOrders.Text = "";
             // 
             // FormDBDebug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtOrders);
+            this.Controls.Add(this.btnNewOrder);
             this.Controls.Add(this.lbMenu);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormDBDebug";
@@ -115,5 +137,7 @@
         private TextBox txtMenuCost;
         private TextBox txtMenuCategory;
         private ListBox lbMenu;
+        private Button btnNewOrder;
+        private RichTextBox txtOrders;
     }
 }
