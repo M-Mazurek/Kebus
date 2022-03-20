@@ -44,10 +44,10 @@ namespace Kebus
              (float)doc["cost"].AsDouble,
              (MENU_ITEM_CATEGORY)doc["category"].AsInt32);
 
-        private static (string id, DateTime created, (uint id, string name, float cost, MENU_ITEM_CATEGORY category)[] items) ExplodeOrder(BsonDocument doc) =>
+        private static (string id, DateTime created, ((uint id, string name, float cost, MENU_ITEM_CATEGORY category) item, bool state)[] items) ExplodeOrder(BsonDocument doc) =>
             (doc["_id"].AsString,
              DateTime.Parse(doc["order_time"].AsString),
-             doc["menu_items"].AsBsonArray.ToList().Select(index => GetMenuItemById((uint)index.AsInt32)).ToArray());
+             doc["menu_items"].AsBsonArray.ToList().Select(index => (GetMenuItemById((uint)index[0].AsInt32), index[1].AsBoolean)).ToArray());
 
         static Kebus()
         {
@@ -95,17 +95,19 @@ namespace Kebus
             if (menuItemIds.Length == 0)
                 throw new Exception("Zamówienie nie może być puste.");
 
+            var itemsWithState = menuItemIds.Select(item => (item, false));
+
             dynamic order = new ExpandoObject();
             order._id = $"{NextOrderId()}|{DateOnly.FromDateTime(DateTime.Now)}";
             order.order_time = DateTime.Now.ToUniversalTime();
-            order.menu_items = menuItemIds;
+            order.menu_items = itemsWithState;
 
             _orders.InsertOne(ExpandoToBson(order));
         }
 
-        public static (string id, DateTime created, (uint id, string name, float cost, MENU_ITEM_CATEGORY category)[] items) GetOrder(uint id) =>
+        public static (string id, DateTime created, ((uint id, string name, float cost, MENU_ITEM_CATEGORY category) item, bool state)[] items) GetOrder(uint id) =>
             ExplodeOrder(_orders.Find(MatchId(string.Join('|', id, DateOnly.FromDateTime(DateTime.Now)))).First());
-        public static (string id, DateTime created, (uint id, string name, float cost, MENU_ITEM_CATEGORY category)[] items)[] GetOrders() =>
+        public static (string id, DateTime created, ((uint id, string name, float cost, MENU_ITEM_CATEGORY category) item, bool state)[] items)[] GetOrders() =>
             _orders.Find(EMPTY_FILTER).ToList().Select(doc => ExplodeOrder(doc)).ToArray();
     }
 }

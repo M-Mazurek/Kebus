@@ -13,7 +13,7 @@ namespace Kebus
     public partial class FormDBDebug : Form
     {
         private readonly DataSyncer<(uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category)[]> _menuItemsSyncer;
-        private readonly DataSyncer<(string id, DateTime created, (uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category)[] items)[]> _orderListSyncer;
+        private readonly DataSyncer<(string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[]> _orderListSyncer;
         public FormDBDebug()
         {
             InitializeComponent();
@@ -47,17 +47,30 @@ namespace Kebus
                 return;
 
             txtOrders.ResetText();
+            cbF.Items.Clear();
+
             foreach (var (id, created, items) in _orderListSyncer.CurrentData.Reverse())
             {
                 txtOrders.SelectionFont = new Font(txtOrders.Font, FontStyle.Bold);
-                txtOrders.AppendText(id.Split('|')[0].PadLeft(3, '0') + Environment.NewLine);
+                txtOrders.AppendText(id.Split('|')[0].PadLeft(3, '0').PadRight(60) + (items.All(item => item.state) ? "RDY" : "PREP") + Environment.NewLine);
                 txtOrders.SelectionFont = new Font(txtOrders.Font, FontStyle.Regular);
                 foreach (var item in items)
                 {
-                    txtOrders.AppendText("- " + item.name + Environment.NewLine);
+                    txtOrders.AppendText("- " + item.item.name.PadRight(30) + (item.state ? "RDY" : "PREP") + Environment.NewLine);
+                    if (!item.state)
+                    {
+                        var cb = item.item.category switch
+                        {
+                            Kebus.MENU_ITEM_CATEGORY.FRIES => cbF,
+                            Kebus.MENU_ITEM_CATEGORY.KEBABS => cbK,
+                            Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS => cbD,
+                            _ => null
+                        };
+                        cb?.Items.Add($"{id.Split('|')[0].PadLeft(3, '0')}:{item.item.id}   {item.item.name}");
+                    }
                 }
                 txtOrders.SelectionFont = new Font(txtOrders.Font, FontStyle.Italic);
-                txtOrders.AppendText("Do zapłaty: " + Math.Round(items.Select(i => i.cost).Sum(), 2).ToString() + "zł" + Environment.NewLine);
+                txtOrders.AppendText("Do zapłaty: " + Math.Round(items.Select(i => i.item.cost).Sum(), 2).ToString() + "zł" + Environment.NewLine);
             }
         }
     }

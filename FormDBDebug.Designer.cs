@@ -36,7 +36,19 @@
             this.lbMenu = new System.Windows.Forms.ListBox();
             this.btnNewOrder = new System.Windows.Forms.Button();
             this.txtOrders = new System.Windows.Forms.RichTextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnF = new System.Windows.Forms.Button();
+            this.cbF = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnK = new System.Windows.Forms.Button();
+            this.cbK = new System.Windows.Forms.ComboBox();
+            this.groupBox = new System.Windows.Forms.GroupBox();
+            this.btnD = new System.Windows.Forms.Button();
+            this.cbD = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnMenuAdd
@@ -112,11 +124,98 @@
             this.txtOrders.TabIndex = 4;
             this.txtOrders.Text = "";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnF);
+            this.groupBox2.Controls.Add(this.cbF);
+            this.groupBox2.Location = new System.Drawing.Point(478, 19);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(310, 54);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Stanowisko - Frytki";
+            // 
+            // btnF
+            // 
+            this.btnF.Location = new System.Drawing.Point(232, 22);
+            this.btnF.Name = "btnF";
+            this.btnF.Size = new System.Drawing.Size(72, 23);
+            this.btnF.TabIndex = 6;
+            this.btnF.Text = "Zatwierdź";
+            this.btnF.UseVisualStyleBackColor = true;
+            // 
+            // cbF
+            // 
+            this.cbF.FormattingEnabled = true;
+            this.cbF.Location = new System.Drawing.Point(6, 22);
+            this.cbF.Name = "cbF";
+            this.cbF.Size = new System.Drawing.Size(220, 23);
+            this.cbF.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnK);
+            this.groupBox3.Controls.Add(this.cbK);
+            this.groupBox3.Location = new System.Drawing.Point(478, 79);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(310, 54);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Stanowisko - Kebaby";
+            // 
+            // btnK
+            // 
+            this.btnK.Location = new System.Drawing.Point(232, 22);
+            this.btnK.Name = "btnK";
+            this.btnK.Size = new System.Drawing.Size(72, 23);
+            this.btnK.TabIndex = 6;
+            this.btnK.Text = "Zatwierdź";
+            this.btnK.UseVisualStyleBackColor = true;
+            // 
+            // cbK
+            // 
+            this.cbK.FormattingEnabled = true;
+            this.cbK.Location = new System.Drawing.Point(6, 22);
+            this.cbK.Name = "cbK";
+            this.cbK.Size = new System.Drawing.Size(220, 23);
+            this.cbK.TabIndex = 0;
+            // 
+            // groupBox
+            // 
+            this.groupBox.Controls.Add(this.btnD);
+            this.groupBox.Controls.Add(this.cbD);
+            this.groupBox.Location = new System.Drawing.Point(478, 139);
+            this.groupBox.Name = "groupBox";
+            this.groupBox.Size = new System.Drawing.Size(310, 54);
+            this.groupBox.TabIndex = 8;
+            this.groupBox.TabStop = false;
+            this.groupBox.Text = "Stanowisko - Napoje i desery";
+            // 
+            // btnD
+            // 
+            this.btnD.Location = new System.Drawing.Point(232, 22);
+            this.btnD.Name = "btnD";
+            this.btnD.Size = new System.Drawing.Size(72, 23);
+            this.btnD.TabIndex = 6;
+            this.btnD.Text = "Zatwierdź";
+            this.btnD.UseVisualStyleBackColor = true;
+            // 
+            // cbD
+            // 
+            this.cbD.FormattingEnabled = true;
+            this.cbD.Location = new System.Drawing.Point(6, 22);
+            this.cbD.Name = "cbD";
+            this.cbD.Size = new System.Drawing.Size(220, 23);
+            this.cbD.TabIndex = 0;
+            // 
             // FormDBDebug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.txtOrders);
             this.Controls.Add(this.btnNewOrder);
             this.Controls.Add(this.lbMenu);
@@ -125,6 +224,9 @@
             this.Text = "FormDBDebug";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -139,5 +241,14 @@
         private ListBox lbMenu;
         private Button btnNewOrder;
         private RichTextBox txtOrders;
+        private GroupBox groupBox2;
+        private Button btnF;
+        private ComboBox cbF;
+        private GroupBox groupBox3;
+        private Button btnK;
+        private ComboBox cbK;
+        private GroupBox groupBox;
+        private Button btnD;
+        private ComboBox cbD;
     }
 }
