@@ -15,7 +15,7 @@
             if (MessageBox.Show("Debug?", "кебус", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 Application.Run(new FormDBDebug());
             else
-                Application.Run(new Form1());
+                Application.Run(new PositionSelector());
         }
     }
 }
