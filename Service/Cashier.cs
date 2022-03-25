@@ -129,6 +129,7 @@ namespace Kebus
             {
                 OrderList.Items.Clear();
                 TotalPriceLabel.Text = "Suma: ";
+                sum = 0;
             }
         }
 

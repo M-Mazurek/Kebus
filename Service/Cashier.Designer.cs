@@ -115,7 +115,7 @@
             this.DrinksPage.Name = "DrinksPage";
             this.DrinksPage.Size = new System.Drawing.Size(819, 542);
             this.DrinksPage.TabIndex = 3;
-            this.DrinksPage.Text = "NAPOJE";
+            this.DrinksPage.Text = "NAPOJE I DESERY";
             this.DrinksPage.UseVisualStyleBackColor = true;
             // 
             // DishesTabSelector
@@ -185,7 +185,7 @@
             this.OrderList.MultiSelect = false;
             this.OrderList.Name = "OrderList";
             this.OrderList.OwnerDraw = true;
-            this.OrderList.Size = new System.Drawing.Size(336, 452);
+            this.OrderList.Size = new System.Drawing.Size(336, 453);
             this.OrderList.TabIndex = 3;
             this.OrderList.TabStop = false;
             this.OrderList.UseCompatibleStateImageBehavior = false;
@@ -194,19 +194,19 @@
             // DishCount
             // 
             this.DishCount.Text = "ilość";
-            this.DishCount.Width = 56;
+            this.DishCount.Width = 70;
             // 
             // DishName
             // 
             this.DishName.Text = "nazwa";
             this.DishName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.DishName.Width = 224;
+            this.DishName.Width = 180;
             // 
             // DishPrice
             // 
             this.DishPrice.Text = "cena";
             this.DishPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.DishPrice.Width = 56;
+            this.DishPrice.Width = 86;
             // 
             // CancelOrderButton
             // 
