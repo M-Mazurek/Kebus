@@ -31,12 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cashier));
             this.PanelsContainer = new System.Windows.Forms.SplitContainer();
             this.DishesTabControl = new MaterialSkin.Controls.MaterialTabControl();
-            this.SetsPage = new System.Windows.Forms.TabPage();
-            this.TestDish = new MaterialSkin.Controls.MaterialButton();
             this.KebabsPage = new System.Windows.Forms.TabPage();
             this.FriesPage = new System.Windows.Forms.TabPage();
             this.DrinksPage = new System.Windows.Forms.TabPage();
-            this.DessertsPage = new System.Windows.Forms.TabPage();
             this.DishesTabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.OrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.TotalPriceLabel = new MaterialSkin.Controls.MaterialLabel();
@@ -52,12 +49,10 @@
             this.PanelsContainer.Panel2.SuspendLayout();
             this.PanelsContainer.SuspendLayout();
             this.DishesTabControl.SuspendLayout();
-            this.SetsPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelsContainer
             // 
-            this.PanelsContainer.Cursor = System.Windows.Forms.Cursors.Default;
             this.PanelsContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelsContainer.Location = new System.Drawing.Point(3, 64);
             this.PanelsContainer.Name = "PanelsContainer";
@@ -75,19 +70,15 @@
             this.PanelsContainer.Panel2.Controls.Add(this.CancelOrderButton);
             this.PanelsContainer.Panel2.Controls.Add(this.ConfirmOrderButton);
             this.PanelsContainer.Panel2.Controls.Add(this.OrderTitle);
-            this.PanelsContainer.Panel2.Cursor = System.Windows.Forms.Cursors.Default;
             this.PanelsContainer.Size = new System.Drawing.Size(1194, 633);
             this.PanelsContainer.SplitterDistance = 833;
             this.PanelsContainer.TabIndex = 0;
             // 
             // DishesTabControl
             // 
-            this.DishesTabControl.Controls.Add(this.SetsPage);
             this.DishesTabControl.Controls.Add(this.KebabsPage);
             this.DishesTabControl.Controls.Add(this.FriesPage);
             this.DishesTabControl.Controls.Add(this.DrinksPage);
-            this.DishesTabControl.Controls.Add(this.DessertsPage);
-            this.DishesTabControl.Cursor = System.Windows.Forms.Cursors.Default;
             this.DishesTabControl.Depth = 0;
             this.DishesTabControl.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DishesTabControl.Location = new System.Drawing.Point(3, 54);
@@ -97,39 +88,6 @@
             this.DishesTabControl.SelectedIndex = 0;
             this.DishesTabControl.Size = new System.Drawing.Size(827, 576);
             this.DishesTabControl.TabIndex = 1;
-            // 
-            // SetsPage
-            // 
-            this.SetsPage.Controls.Add(this.TestDish);
-            this.SetsPage.Cursor = System.Windows.Forms.Cursors.Default;
-            this.SetsPage.Location = new System.Drawing.Point(4, 30);
-            this.SetsPage.Name = "SetsPage";
-            this.SetsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SetsPage.Size = new System.Drawing.Size(819, 542);
-            this.SetsPage.TabIndex = 0;
-            this.SetsPage.Text = "ZESTAWY";
-            this.SetsPage.UseVisualStyleBackColor = true;
-            // 
-            // TestDish
-            // 
-            this.TestDish.AutoSize = false;
-            this.TestDish.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.TestDish.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Dense;
-            this.TestDish.Depth = 0;
-            this.TestDish.HighEmphasis = true;
-            this.TestDish.Icon = null;
-            this.TestDish.Location = new System.Drawing.Point(25, 40);
-            this.TestDish.Margin = new System.Windows.Forms.Padding(0);
-            this.TestDish.MouseState = MaterialSkin.MouseState.HOVER;
-            this.TestDish.Name = "TestDish";
-            this.TestDish.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.TestDish.Size = new System.Drawing.Size(200, 80);
-            this.TestDish.TabIndex = 0;
-            this.TestDish.Text = "hardcoded kebab";
-            this.TestDish.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.TestDish.UseAccentColor = false;
-            this.TestDish.UseVisualStyleBackColor = true;
-            this.TestDish.Click += new System.EventHandler(this.AddTestDish_Click);
             // 
             // KebabsPage
             // 
@@ -160,20 +118,10 @@
             this.DrinksPage.Text = "NAPOJE";
             this.DrinksPage.UseVisualStyleBackColor = true;
             // 
-            // DessertsPage
-            // 
-            this.DessertsPage.Location = new System.Drawing.Point(4, 30);
-            this.DessertsPage.Name = "DessertsPage";
-            this.DessertsPage.Size = new System.Drawing.Size(819, 542);
-            this.DessertsPage.TabIndex = 4;
-            this.DessertsPage.Text = "DESERY";
-            this.DessertsPage.UseVisualStyleBackColor = true;
-            // 
             // DishesTabSelector
             // 
             this.DishesTabSelector.BaseTabControl = this.DishesTabControl;
             this.DishesTabSelector.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
-            this.DishesTabSelector.Cursor = System.Windows.Forms.Cursors.Default;
             this.DishesTabSelector.Depth = 0;
             this.DishesTabSelector.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.DishesTabSelector.Location = new System.Drawing.Point(-4, 0);
@@ -212,9 +160,9 @@
             this.TotalPriceLabel.Location = new System.Drawing.Point(208, 553);
             this.TotalPriceLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.TotalPriceLabel.Name = "TotalPriceLabel";
-            this.TotalPriceLabel.Size = new System.Drawing.Size(49, 19);
+            this.TotalPriceLabel.Size = new System.Drawing.Size(51, 19);
             this.TotalPriceLabel.TabIndex = 4;
-            this.TotalPriceLabel.Text = "suma: ";
+            this.TotalPriceLabel.Text = "Suma: ";
             // 
             // OrderList
             // 
@@ -225,7 +173,6 @@
             this.DishCount,
             this.DishName,
             this.DishPrice});
-            this.OrderList.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.OrderList.Depth = 0;
             this.OrderList.FullRowSelect = true;
             this.OrderList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -307,6 +254,7 @@
             this.OrderTitle.AutoSize = true;
             this.OrderTitle.Depth = 0;
             this.OrderTitle.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.OrderTitle.ForeColor = System.Drawing.SystemColors.ControlText;
             this.OrderTitle.Location = new System.Drawing.Point(119, 29);
             this.OrderTitle.Margin = new System.Windows.Forms.Padding(30, 0, 3, 0);
             this.OrderTitle.MouseState = MaterialSkin.MouseState.HOVER;
@@ -337,7 +285,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.PanelsContainer)).EndInit();
             this.PanelsContainer.ResumeLayout(false);
             this.DishesTabControl.ResumeLayout(false);
-            this.SetsPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -346,11 +293,9 @@
         private SplitContainer PanelsContainer;
         private MaterialSkin.Controls.MaterialTabSelector DishesTabSelector;
         private MaterialSkin.Controls.MaterialTabControl DishesTabControl;
-        private TabPage SetsPage;
         private TabPage KebabsPage;
         private TabPage FriesPage;
         private TabPage DrinksPage;
-        private TabPage DessertsPage;
         private MaterialSkin.Controls.MaterialLabel OrderTitle;
         private MaterialSkin.Controls.MaterialButton CancelOrderButton;
         private MaterialSkin.Controls.MaterialButton ConfirmOrderButton;
@@ -359,7 +304,6 @@
         private ColumnHeader DishName;
         private ColumnHeader DishPrice;
         private MaterialSkin.Controls.MaterialLabel TotalPriceLabel;
-        private MaterialSkin.Controls.MaterialButton TestDish;
         private MaterialSkin.Controls.MaterialButton OrdersButton;
     }
 }
