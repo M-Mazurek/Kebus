@@ -45,6 +45,8 @@
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.btnD = new System.Windows.Forms.Button();
             this.cbD = new System.Windows.Forms.ComboBox();
+            this.cbRdy = new System.Windows.Forms.ComboBox();
+            this.btnRdy = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -143,6 +145,7 @@
             this.btnF.TabIndex = 6;
             this.btnF.Text = "Zatwierdź";
             this.btnF.UseVisualStyleBackColor = true;
+            this.btnF.Click += new System.EventHandler(this.UpdateOrder);
             // 
             // cbF
             // 
@@ -171,6 +174,7 @@
             this.btnK.TabIndex = 6;
             this.btnK.Text = "Zatwierdź";
             this.btnK.UseVisualStyleBackColor = true;
+            this.btnK.Click += new System.EventHandler(this.UpdateOrder);
             // 
             // cbK
             // 
@@ -199,6 +203,7 @@
             this.btnD.TabIndex = 6;
             this.btnD.Text = "Zatwierdź";
             this.btnD.UseVisualStyleBackColor = true;
+            this.btnD.Click += new System.EventHandler(this.UpdateOrder);
             // 
             // cbD
             // 
@@ -208,11 +213,31 @@
             this.cbD.Size = new System.Drawing.Size(220, 23);
             this.cbD.TabIndex = 0;
             // 
+            // cbRdy
+            // 
+            this.cbRdy.FormattingEnabled = true;
+            this.cbRdy.Location = new System.Drawing.Point(484, 199);
+            this.cbRdy.Name = "cbRdy";
+            this.cbRdy.Size = new System.Drawing.Size(220, 23);
+            this.cbRdy.TabIndex = 9;
+            // 
+            // btnRdy
+            // 
+            this.btnRdy.Location = new System.Drawing.Point(710, 199);
+            this.btnRdy.Name = "btnRdy";
+            this.btnRdy.Size = new System.Drawing.Size(72, 23);
+            this.btnRdy.TabIndex = 7;
+            this.btnRdy.Text = "Wydaj";
+            this.btnRdy.UseVisualStyleBackColor = true;
+            this.btnRdy.Click += new System.EventHandler(this.ReadyOrder);
+            // 
             // FormDBDebug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnRdy);
+            this.Controls.Add(this.cbRdy);
             this.Controls.Add(this.groupBox);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -250,5 +275,7 @@
         private GroupBox groupBox;
         private Button btnD;
         private ComboBox cbD;
+        private ComboBox cbRdy;
+        private Button btnRdy;
     }
 }

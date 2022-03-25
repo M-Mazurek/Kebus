@@ -14,6 +14,11 @@ namespace Kebus
     {
         private readonly DataSyncer<(uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category)[]> _menuItemsSyncer;
         private readonly DataSyncer<(string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[]> _orderListSyncer;
+
+        private readonly List<uint> _kIndices = new();
+        private readonly List<uint> _fIndices = new();
+        private readonly List<uint> _dIndices = new();
+
         public FormDBDebug()
         {
             InitializeComponent();
@@ -48,12 +53,16 @@ namespace Kebus
 
             txtOrders.ResetText();
             cbF.Items.Clear();
+            cbK.Items.Clear();
+            cbD.Items.Clear();
+            cbRdy.Items.Clear();
 
             foreach (var (id, created, items) in _orderListSyncer.CurrentData.Reverse())
             {
                 txtOrders.SelectionFont = new Font(txtOrders.Font, FontStyle.Bold);
                 txtOrders.AppendText(id.Split('|')[0].PadLeft(3, '0').PadRight(60) + (items.All(item => item.state) ? "RDY" : "PREP") + Environment.NewLine);
                 txtOrders.SelectionFont = new Font(txtOrders.Font, FontStyle.Regular);
+                uint itemIndex = default;
                 foreach (var item in items)
                 {
                     txtOrders.AppendText("- " + item.item.name.PadRight(30) + (item.state ? "RDY" : "PREP") + Environment.NewLine);
@@ -61,17 +70,48 @@ namespace Kebus
                     {
                         var cb = item.item.category switch
                         {
-                            Kebus.MENU_ITEM_CATEGORY.FRIES => cbF,
-                            Kebus.MENU_ITEM_CATEGORY.KEBABS => cbK,
-                            Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS => cbD,
-                            _ => null
+                            Kebus.MENU_ITEM_CATEGORY.FRIES => (cbF, _fIndices),
+                            Kebus.MENU_ITEM_CATEGORY.KEBABS => (cbK, _kIndices),
+                            Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS => (cbD, _dIndices),
+                            _ => (null, null)
                         };
-                        cb?.Items.Add($"{id.Split('|')[0].PadLeft(3, '0')}:{item.item.id}   {item.item.name}");
+
+                        cb.Item1?.Items.Add($"{id.Split('|')[0].PadLeft(3, '0')}:{item.item.id}   {item.item.name}");
+                        cb.Item2!.Add(itemIndex++);
                     }
                 }
                 txtOrders.SelectionFont = new Font(txtOrders.Font, FontStyle.Italic);
                 txtOrders.AppendText("Do zapłaty: " + Math.Round(items.Select(i => i.item.cost).Sum(), 2).ToString() + "zł" + Environment.NewLine);
+
+                if (items.All(item => item.state))
+                {
+                    cbRdy.Items.Add(id.Split('|')[0].PadLeft(3, '0'));
+                }
             }
+        }
+
+        private void UpdateOrder(object sender, EventArgs e)
+        {
+            var cb = ((Control)sender).Name switch
+            {
+                "btnF" => (cbF, _fIndices),
+                "btnK" => (cbK, _kIndices),
+                "btnD" => (cbD, _dIndices),
+                _ => (null, null)
+            };
+
+            if (cb.Item1 == null)
+                return;
+
+            MessageBox.Show(cb.Item1.SelectedItem.ToString() + '\n' + cb.Item2![cb.Item1.SelectedIndex]);
+
+            Kebus.UpdateOrderItemState(uint.Parse(cb.Item1.SelectedItem?.ToString()?.Split(':')[0] ?? ""),
+                                       cb.Item2![cb.Item1.SelectedIndex]);
+        }
+
+        private void ReadyOrder(object sender, EventArgs e)
+        {
+            Kebus.ReadyAndArchiviseOrder(uint.Parse(cbRdy.SelectedItem.ToString()!));
         }
     }
 }
