@@ -11,7 +11,7 @@ namespace Kebus
 {
     public class DataSyncer<T> : BackgroundWorker
     {
-        private const int REFRESH_RATE = 1000;
+        private const int REFRESH_RATE = 5000;
         private readonly Func<T> _dataGetter;
         private readonly Action _onSync;
 

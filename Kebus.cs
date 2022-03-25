@@ -8,6 +8,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System.Dynamic;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace Kebus
 {
@@ -109,5 +110,18 @@ namespace Kebus
             ExplodeOrder(_orders.Find(MatchId(string.Join('|', id, DateOnly.FromDateTime(DateTime.Now)))).First());
         public static (string id, DateTime created, ((uint id, string name, float cost, MENU_ITEM_CATEGORY category) item, bool state)[] items)[] GetOrders() =>
             _orders.Find(EMPTY_FILTER).ToList().Select(doc => ExplodeOrder(doc)).ToArray();
+        public static void UpdateOrderItemState(uint orderId, uint index)
+        {
+            _orders.UpdateOne(MatchId($"{orderId}|{DateOnly.FromDateTime(DateTime.Now)}"), 
+                Builders<BsonDocument>.Update.Set(order => order["menu_items"][(int)index]["Item2"], true));
+        }
+
+        public static void ReadyAndArchiviseOrder(uint orderId)
+        {
+            // maybe add to a list of rdy orders dunno
+
+            _orderLogs.InsertOne(_orders.Find(MatchId($"{orderId}|{DateOnly.FromDateTime(DateTime.Now)}")).First());
+            _orders.DeleteOne(MatchId($"{orderId}|{DateOnly.FromDateTime(DateTime.Now)}"));
+        }
     }
 }
