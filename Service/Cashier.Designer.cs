@@ -160,9 +160,9 @@
             this.TotalPriceLabel.Location = new System.Drawing.Point(208, 553);
             this.TotalPriceLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.TotalPriceLabel.Name = "TotalPriceLabel";
-            this.TotalPriceLabel.Size = new System.Drawing.Size(51, 19);
+            this.TotalPriceLabel.Size = new System.Drawing.Size(98, 19);
             this.TotalPriceLabel.TabIndex = 4;
-            this.TotalPriceLabel.Text = "Suma: ";
+            this.TotalPriceLabel.Text = "Suma: 0.00 zł";
             // 
             // OrderList
             // 
@@ -292,7 +292,6 @@
         #endregion
         private SplitContainer PanelsContainer;
         private MaterialSkin.Controls.MaterialTabSelector DishesTabSelector;
-        private MaterialSkin.Controls.MaterialTabControl DishesTabControl;
         private TabPage KebabsPage;
         private TabPage FriesPage;
         private TabPage DrinksPage;
@@ -305,5 +304,6 @@
         private ColumnHeader DishPrice;
         private MaterialSkin.Controls.MaterialLabel TotalPriceLabel;
         private MaterialSkin.Controls.MaterialButton OrdersButton;
+        private MaterialSkin.Controls.MaterialTabControl DishesTabControl;
     }
 }

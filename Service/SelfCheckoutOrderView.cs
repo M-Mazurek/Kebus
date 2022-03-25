@@ -9,13 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Kebus {
     public partial class SelfCheckoutOrderView : MaterialForm {
 
         private readonly MaterialSkinManager materialSkinManager;
+        public float selfCheckoutSum;
+        public MaterialListView getOrderList() 
+        {
+            return OrderList;
+        }
 
-        public SelfCheckoutOrderView(List<ListViewItem> orderedItems) {
+        public SelfCheckoutOrderView()
+        { 
+            //List<ListViewItem> orderedItems
             InitializeComponent();
             materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
@@ -23,9 +31,11 @@ namespace Kebus {
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Color.FromArgb(37, 46, 56), Color.FromArgb(37, 46, 56),
                 Color.FromArgb(143, 46, 56), Color.FromArgb(29, 41, 53), TextShade.WHITE);
-            OrderList.Items.Clear();
+
+           /* OrderList.Items.Clear();
+
             foreach (var item in orderedItems) // to fix: after closing this form and reopening it, Adding items throws Exception; idk why
-                OrderList.Items.Add(item);
+                OrderList.Items.Add(item);*/
             
         }
 
@@ -36,5 +46,9 @@ namespace Kebus {
         private void CloseOrderButton_Click(object sender, EventArgs e) =>
             Close();
 
+        private void SelfCheckoutOrderView_Load(object sender, EventArgs e)
+        {
+            TotalPriceLabel.Text = $"Suma: {selfCheckoutSum.ToString("c2", new CultureInfo("pl-PL"))}";
+        }
     }
 }

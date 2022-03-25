@@ -25,18 +25,14 @@
         private void InitializeComponent() {
             this.DishesTabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.DishesTabControl = new MaterialSkin.Controls.MaterialTabControl();
-            this.SetsPage = new System.Windows.Forms.TabPage();
-            this.TestDish = new MaterialSkin.Controls.MaterialButton();
             this.KebabsPage = new System.Windows.Forms.TabPage();
             this.FriesPage = new System.Windows.Forms.TabPage();
             this.DrinksPage = new System.Windows.Forms.TabPage();
-            this.DessertsPage = new System.Windows.Forms.TabPage();
             this.PaymentPanel = new System.Windows.Forms.Panel();
             this.ShowOrderButton = new MaterialSkin.Controls.MaterialButton();
             this.TotalPriceLabel = new MaterialSkin.Controls.MaterialLabel();
             this.ConfirmOrderButton = new MaterialSkin.Controls.MaterialButton();
             this.DishesTabControl.SuspendLayout();
-            this.SetsPage.SuspendLayout();
             this.PaymentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +40,6 @@
             // 
             this.DishesTabSelector.BaseTabControl = this.DishesTabControl;
             this.DishesTabSelector.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
-            this.DishesTabSelector.Cursor = System.Windows.Forms.Cursors.Default;
             this.DishesTabSelector.Depth = 0;
             this.DishesTabSelector.Dock = System.Windows.Forms.DockStyle.Top;
             this.DishesTabSelector.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -59,12 +54,9 @@
             // 
             // DishesTabControl
             // 
-            this.DishesTabControl.Controls.Add(this.SetsPage);
             this.DishesTabControl.Controls.Add(this.KebabsPage);
             this.DishesTabControl.Controls.Add(this.FriesPage);
             this.DishesTabControl.Controls.Add(this.DrinksPage);
-            this.DishesTabControl.Controls.Add(this.DessertsPage);
-            this.DishesTabControl.Cursor = System.Windows.Forms.Cursors.Default;
             this.DishesTabControl.Depth = 0;
             this.DishesTabControl.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DishesTabControl.Location = new System.Drawing.Point(3, 112);
@@ -74,39 +66,6 @@
             this.DishesTabControl.SelectedIndex = 0;
             this.DishesTabControl.Size = new System.Drawing.Size(844, 750);
             this.DishesTabControl.TabIndex = 2;
-            // 
-            // SetsPage
-            // 
-            this.SetsPage.Controls.Add(this.TestDish);
-            this.SetsPage.Cursor = System.Windows.Forms.Cursors.Default;
-            this.SetsPage.Location = new System.Drawing.Point(4, 30);
-            this.SetsPage.Name = "SetsPage";
-            this.SetsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SetsPage.Size = new System.Drawing.Size(836, 716);
-            this.SetsPage.TabIndex = 0;
-            this.SetsPage.Text = "ZESTAWY";
-            this.SetsPage.UseVisualStyleBackColor = true;
-            // 
-            // TestDish
-            // 
-            this.TestDish.AutoSize = false;
-            this.TestDish.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.TestDish.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Dense;
-            this.TestDish.Depth = 0;
-            this.TestDish.HighEmphasis = true;
-            this.TestDish.Icon = null;
-            this.TestDish.Location = new System.Drawing.Point(25, 40);
-            this.TestDish.Margin = new System.Windows.Forms.Padding(0);
-            this.TestDish.MouseState = MaterialSkin.MouseState.HOVER;
-            this.TestDish.Name = "TestDish";
-            this.TestDish.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.TestDish.Size = new System.Drawing.Size(200, 80);
-            this.TestDish.TabIndex = 0;
-            this.TestDish.Text = "hardcoded kebab";
-            this.TestDish.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.TestDish.UseAccentColor = false;
-            this.TestDish.UseVisualStyleBackColor = true;
-            this.TestDish.Click += new System.EventHandler(this.TestDish_Click);
             // 
             // KebabsPage
             // 
@@ -134,17 +93,8 @@
             this.DrinksPage.Name = "DrinksPage";
             this.DrinksPage.Size = new System.Drawing.Size(836, 716);
             this.DrinksPage.TabIndex = 3;
-            this.DrinksPage.Text = "NAPOJE";
+            this.DrinksPage.Text = "NAPOJE I DESERY";
             this.DrinksPage.UseVisualStyleBackColor = true;
-            // 
-            // DessertsPage
-            // 
-            this.DessertsPage.Location = new System.Drawing.Point(4, 30);
-            this.DessertsPage.Name = "DessertsPage";
-            this.DessertsPage.Size = new System.Drawing.Size(836, 716);
-            this.DessertsPage.TabIndex = 4;
-            this.DessertsPage.Text = "DESERY";
-            this.DessertsPage.UseVisualStyleBackColor = true;
             // 
             // PaymentPanel
             // 
@@ -184,9 +134,9 @@
             this.TotalPriceLabel.Location = new System.Drawing.Point(618, 33);
             this.TotalPriceLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.TotalPriceLabel.Name = "TotalPriceLabel";
-            this.TotalPriceLabel.Size = new System.Drawing.Size(49, 19);
+            this.TotalPriceLabel.Size = new System.Drawing.Size(98, 19);
             this.TotalPriceLabel.TabIndex = 6;
-            this.TotalPriceLabel.Text = "suma: ";
+            this.TotalPriceLabel.Text = "Suma: 0.00 zł";
             // 
             // ConfirmOrderButton
             // 
@@ -225,7 +175,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kebus System : Kasa Samoobsługowa";
             this.DishesTabControl.ResumeLayout(false);
-            this.SetsPage.ResumeLayout(false);
             this.PaymentPanel.ResumeLayout(false);
             this.PaymentPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -236,12 +185,9 @@
 
         private MaterialSkin.Controls.MaterialTabSelector DishesTabSelector;
         private MaterialSkin.Controls.MaterialTabControl DishesTabControl;
-        private TabPage SetsPage;
-        private MaterialSkin.Controls.MaterialButton TestDish;
         private TabPage KebabsPage;
         private TabPage FriesPage;
         private TabPage DrinksPage;
-        private TabPage DessertsPage;
         private Panel PaymentPanel;
         private MaterialSkin.Controls.MaterialButton ShowOrderButton;
         private MaterialSkin.Controls.MaterialLabel TotalPriceLabel;

@@ -55,7 +55,6 @@
             this.DishCount,
             this.DishName,
             this.DishPrice});
-            this.OrderList.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.OrderList.Depth = 0;
             this.OrderList.FullRowSelect = true;
             this.OrderList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -142,9 +141,9 @@
             this.TotalPriceLabel.Location = new System.Drawing.Point(618, 33);
             this.TotalPriceLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.TotalPriceLabel.Name = "TotalPriceLabel";
-            this.TotalPriceLabel.Size = new System.Drawing.Size(49, 19);
+            this.TotalPriceLabel.Size = new System.Drawing.Size(98, 19);
             this.TotalPriceLabel.TabIndex = 6;
-            this.TotalPriceLabel.Text = "suma: ";
+            this.TotalPriceLabel.Text = "Suma: 0.00 zł";
             // 
             // ConfirmOrderButton
             // 
@@ -181,6 +180,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SelfCheckoutOrderView";
+            this.Load += new System.EventHandler(this.SelfCheckoutOrderView_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.PaymentPanel.ResumeLayout(false);
