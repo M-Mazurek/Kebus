@@ -103,15 +103,13 @@ namespace Kebus
             if (cb.Item1 == null)
                 return;
 
-            MessageBox.Show(cb.Item1.SelectedItem.ToString() + '\n' + cb.Item2![cb.Item1.SelectedIndex]);
-
             Kebus.UpdateOrderItemState(uint.Parse(cb.Item1.SelectedItem?.ToString()?.Split(':')[0] ?? ""),
                                        cb.Item2![cb.Item1.SelectedIndex]);
         }
 
         private void ReadyOrder(object sender, EventArgs e)
         {
-            Kebus.ReadyAndArchiviseOrder(uint.Parse(cbRdy.SelectedItem.ToString()!));
+            Kebus.ArchiviseOrder(uint.Parse(cbRdy.SelectedItem.ToString()!));
         }
     }
 }

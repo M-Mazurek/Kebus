@@ -24,32 +24,73 @@
         /// </summary>
         private void InitializeComponent() {
             this.ContentPanel = new System.Windows.Forms.Panel();
-            this.TitleBar = new MaterialSkin.Controls.MaterialLabel();
-            this.Sidebar = new System.Windows.Forms.Panel();
-            this.CreateRaportButton = new MaterialSkin.Controls.MaterialButton();
-            this.ShowMenuButton = new MaterialSkin.Controls.MaterialButton();
-            this.ShowStatisticsButton = new MaterialSkin.Controls.MaterialButton();
-            this.ShowOrdersButton = new MaterialSkin.Controls.MaterialButton();
-            this.AddDish = new MaterialSkin.Controls.MaterialButton();
-            this.ModifyDish = new MaterialSkin.Controls.MaterialButton();
-            this.DeleteDish = new MaterialSkin.Controls.MaterialButton();
-            this.LastOrdersList = new MaterialSkin.Controls.MaterialListView();
+            this.MenuItemList = new MaterialSkin.Controls.MaterialListView();
             this.Id = new System.Windows.Forms.ColumnHeader();
             this.ItemName = new System.Windows.Forms.ColumnHeader();
             this.ItemCategory = new System.Windows.Forms.ColumnHeader();
             this.ItemPrice = new System.Windows.Forms.ColumnHeader();
+            this.TitleBar = new MaterialSkin.Controls.MaterialLabel();
+            this.Sidebar = new System.Windows.Forms.Panel();
+            this.AddDish = new MaterialSkin.Controls.MaterialButton();
+            this.CreateRaportButton = new MaterialSkin.Controls.MaterialButton();
+            this.ShowMenuButton = new MaterialSkin.Controls.MaterialButton();
+            this.ShowStatisticsButton = new MaterialSkin.Controls.MaterialButton();
+            this.ShowOrdersButton = new MaterialSkin.Controls.MaterialButton();
             this.ContentPanel.SuspendLayout();
             this.Sidebar.SuspendLayout();
             this.SuspendLayout();
             // 
             // ContentPanel
             // 
-            this.ContentPanel.Controls.Add(this.LastOrdersList);
+            this.ContentPanel.Controls.Add(this.MenuItemList);
             this.ContentPanel.Controls.Add(this.TitleBar);
             this.ContentPanel.Location = new System.Drawing.Point(6, 67);
             this.ContentPanel.Name = "ContentPanel";
             this.ContentPanel.Size = new System.Drawing.Size(933, 627);
             this.ContentPanel.TabIndex = 2;
+            // 
+            // MenuItemList
+            // 
+            this.MenuItemList.AutoSizeTable = false;
+            this.MenuItemList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.MenuItemList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.MenuItemList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Id,
+            this.ItemName,
+            this.ItemCategory,
+            this.ItemPrice});
+            this.MenuItemList.Depth = 0;
+            this.MenuItemList.FullRowSelect = true;
+            this.MenuItemList.Location = new System.Drawing.Point(19, 64);
+            this.MenuItemList.MinimumSize = new System.Drawing.Size(200, 100);
+            this.MenuItemList.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.MenuItemList.MouseState = MaterialSkin.MouseState.OUT;
+            this.MenuItemList.Name = "MenuItemList";
+            this.MenuItemList.OwnerDraw = true;
+            this.MenuItemList.Size = new System.Drawing.Size(867, 518);
+            this.MenuItemList.TabIndex = 4;
+            this.MenuItemList.UseCompatibleStateImageBehavior = false;
+            this.MenuItemList.View = System.Windows.Forms.View.Details;
+            // 
+            // Id
+            // 
+            this.Id.Text = "ID pozycji";
+            this.Id.Width = 160;
+            // 
+            // ItemName
+            // 
+            this.ItemName.Text = "Nazwa pozycji";
+            this.ItemName.Width = 380;
+            // 
+            // ItemCategory
+            // 
+            this.ItemCategory.Text = "Kategoria";
+            this.ItemCategory.Width = 160;
+            // 
+            // ItemPrice
+            // 
+            this.ItemPrice.Text = "Kwota";
+            this.ItemPrice.Width = 160;
             // 
             // TitleBar
             // 
@@ -66,8 +107,6 @@
             // 
             // Sidebar
             // 
-            this.Sidebar.Controls.Add(this.DeleteDish);
-            this.Sidebar.Controls.Add(this.ModifyDish);
             this.Sidebar.Controls.Add(this.AddDish);
             this.Sidebar.Controls.Add(this.CreateRaportButton);
             this.Sidebar.Controls.Add(this.ShowMenuButton);
@@ -77,6 +116,27 @@
             this.Sidebar.Name = "Sidebar";
             this.Sidebar.Size = new System.Drawing.Size(249, 627);
             this.Sidebar.TabIndex = 3;
+            // 
+            // AddDish
+            // 
+            this.AddDish.AutoSize = false;
+            this.AddDish.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AddDish.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.AddDish.Depth = 0;
+            this.AddDish.HighEmphasis = true;
+            this.AddDish.Icon = null;
+            this.AddDish.Location = new System.Drawing.Point(29, 316);
+            this.AddDish.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.AddDish.MouseState = MaterialSkin.MouseState.HOVER;
+            this.AddDish.Name = "AddDish";
+            this.AddDish.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.AddDish.Size = new System.Drawing.Size(190, 40);
+            this.AddDish.TabIndex = 8;
+            this.AddDish.Text = "Dodaj pozycję";
+            this.AddDish.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.AddDish.UseAccentColor = false;
+            this.AddDish.UseVisualStyleBackColor = true;
+            this.AddDish.Click += new System.EventHandler(this.AddDish_Click);
             // 
             // CreateRaportButton
             // 
@@ -162,109 +222,6 @@
             this.ShowOrdersButton.UseVisualStyleBackColor = true;
             this.ShowOrdersButton.Click += new System.EventHandler(this.ShowOrdersButton_Click);
             // 
-            // AddDish
-            // 
-            this.AddDish.AutoSize = false;
-            this.AddDish.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AddDish.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.AddDish.Depth = 0;
-            this.AddDish.HighEmphasis = true;
-            this.AddDish.Icon = null;
-            this.AddDish.Location = new System.Drawing.Point(29, 239);
-            this.AddDish.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.AddDish.MouseState = MaterialSkin.MouseState.HOVER;
-            this.AddDish.Name = "AddDish";
-            this.AddDish.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.AddDish.Size = new System.Drawing.Size(190, 40);
-            this.AddDish.TabIndex = 8;
-            this.AddDish.Text = "Dodaj pozycję";
-            this.AddDish.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.AddDish.UseAccentColor = false;
-            this.AddDish.UseVisualStyleBackColor = true;
-            // 
-            // ModifyDish
-            // 
-            this.ModifyDish.AutoSize = false;
-            this.ModifyDish.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ModifyDish.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.ModifyDish.Depth = 0;
-            this.ModifyDish.HighEmphasis = true;
-            this.ModifyDish.Icon = null;
-            this.ModifyDish.Location = new System.Drawing.Point(29, 307);
-            this.ModifyDish.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ModifyDish.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ModifyDish.Name = "ModifyDish";
-            this.ModifyDish.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.ModifyDish.Size = new System.Drawing.Size(190, 40);
-            this.ModifyDish.TabIndex = 9;
-            this.ModifyDish.Text = "Edytuj zaznaczoną pozycję";
-            this.ModifyDish.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.ModifyDish.UseAccentColor = false;
-            this.ModifyDish.UseVisualStyleBackColor = true;
-            // 
-            // DeleteDish
-            // 
-            this.DeleteDish.AutoSize = false;
-            this.DeleteDish.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.DeleteDish.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.DeleteDish.Depth = 0;
-            this.DeleteDish.HighEmphasis = true;
-            this.DeleteDish.Icon = null;
-            this.DeleteDish.Location = new System.Drawing.Point(29, 371);
-            this.DeleteDish.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.DeleteDish.MouseState = MaterialSkin.MouseState.HOVER;
-            this.DeleteDish.Name = "DeleteDish";
-            this.DeleteDish.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.DeleteDish.Size = new System.Drawing.Size(190, 40);
-            this.DeleteDish.TabIndex = 10;
-            this.DeleteDish.Text = "Usuń zaznaczoną pozycję";
-            this.DeleteDish.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.DeleteDish.UseAccentColor = false;
-            this.DeleteDish.UseVisualStyleBackColor = true;
-            // 
-            // LastOrdersList
-            // 
-            this.LastOrdersList.AutoSizeTable = false;
-            this.LastOrdersList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.LastOrdersList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LastOrdersList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Id,
-            this.ItemName,
-            this.ItemCategory,
-            this.ItemPrice});
-            this.LastOrdersList.Depth = 0;
-            this.LastOrdersList.FullRowSelect = true;
-            this.LastOrdersList.Location = new System.Drawing.Point(19, 64);
-            this.LastOrdersList.MinimumSize = new System.Drawing.Size(200, 100);
-            this.LastOrdersList.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.LastOrdersList.MouseState = MaterialSkin.MouseState.OUT;
-            this.LastOrdersList.Name = "LastOrdersList";
-            this.LastOrdersList.OwnerDraw = true;
-            this.LastOrdersList.Size = new System.Drawing.Size(867, 518);
-            this.LastOrdersList.TabIndex = 4;
-            this.LastOrdersList.UseCompatibleStateImageBehavior = false;
-            this.LastOrdersList.View = System.Windows.Forms.View.Details;
-            // 
-            // Id
-            // 
-            this.Id.Text = "ID pozycji";
-            this.Id.Width = 160;
-            // 
-            // ItemName
-            // 
-            this.ItemName.Text = "Nazwa pozycji";
-            this.ItemName.Width = 380;
-            // 
-            // ItemCategory
-            // 
-            this.ItemCategory.Text = "Kategoria";
-            this.ItemCategory.Width = 160;
-            // 
-            // ItemPrice
-            // 
-            this.ItemPrice.Text = "Kwota";
-            this.ItemPrice.Width = 160;
-            // 
             // ManagerMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -292,14 +249,12 @@
         private Panel ContentPanel;
         private MaterialSkin.Controls.MaterialLabel TitleBar;
         private Panel Sidebar;
-        private MaterialSkin.Controls.MaterialButton DeleteDish;
-        private MaterialSkin.Controls.MaterialButton ModifyDish;
         private MaterialSkin.Controls.MaterialButton AddDish;
         private MaterialSkin.Controls.MaterialButton CreateRaportButton;
         private MaterialSkin.Controls.MaterialButton ShowMenuButton;
         private MaterialSkin.Controls.MaterialButton ShowStatisticsButton;
         private MaterialSkin.Controls.MaterialButton ShowOrdersButton;
-        private MaterialSkin.Controls.MaterialListView LastOrdersList;
+        private MaterialSkin.Controls.MaterialListView MenuItemList;
         private ColumnHeader Id;
         private ColumnHeader ItemName;
         private ColumnHeader ItemCategory;

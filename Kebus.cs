@@ -48,7 +48,7 @@ namespace Kebus
         private static (string id, DateTime created, ((uint id, string name, float cost, MENU_ITEM_CATEGORY category) item, bool state)[] items) ExplodeOrder(BsonDocument doc) =>
             (doc["_id"].AsString,
              DateTime.Parse(doc["order_time"].AsString),
-             doc["menu_items"].AsBsonArray.ToList().Select(index => (GetMenuItemById((uint)index[0].AsInt32), index[1].AsBoolean)).ToArray());
+             doc["menu_items"].AsBsonArray.ToList().Select(index => (GetMenuItemById((uint)index["Item1"].AsInt32), index[1].AsBoolean)).ToArray());
 
         static Kebus()
         {
@@ -69,7 +69,7 @@ namespace Kebus
             cost = Math.Abs(cost);
 
             dynamic menuItem = new ExpandoObject();
-            menuItem._id = _menuItems.CountDocuments(EMPTY_FILTER);
+            menuItem._id = _menuItems.Find(EMPTY_FILTER).SortBy(x => x["_id"]).ToList()[^1]["_id"].AsInt32 + 1;
             menuItem.name = name;
             menuItem.cost = cost;
             menuItem.category = category;
@@ -116,12 +116,14 @@ namespace Kebus
                 Builders<BsonDocument>.Update.Set(order => order["menu_items"][(int)index]["Item2"], true));
         }
 
-        public static void ReadyAndArchiviseOrder(uint orderId)
+        public static void ArchiviseOrder(uint orderId)
         {
-            // maybe add to a list of rdy orders dunno
-
             _orderLogs.InsertOne(_orders.Find(MatchId($"{orderId}|{DateOnly.FromDateTime(DateTime.Now)}")).First());
             _orders.DeleteOne(MatchId($"{orderId}|{DateOnly.FromDateTime(DateTime.Now)}"));
         }
+
+        public static (string id, DateTime created, ((uint id, string name, float cost, MENU_ITEM_CATEGORY category) item, bool state)[] items)[] GetArchivizedOrders() =>
+            _orderLogs.Find(EMPTY_FILTER).ToList().Select(doc => ExplodeOrder(doc)).ToArray();
+
     }
 }
