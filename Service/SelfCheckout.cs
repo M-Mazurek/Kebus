@@ -27,7 +27,6 @@ namespace Kebus {
             materialSkinManager.ColorScheme = new ColorScheme(Color.FromArgb(37, 46, 56), Color.FromArgb(37, 46, 56),
                 Color.FromArgb(143, 46, 56), Color.FromArgb(29, 41, 53), TextShade.WHITE);
 
-            
             btnManager = new(this, orderView.getOrderList(), new() { KebabsPage, FriesPage, DrinksPage }, TotalPriceLabel);
             Kebus.GetMenuItems().ToList().ForEach(menuItem =>
             {
@@ -37,14 +36,30 @@ namespace Kebus {
         }
         
         private void ConfirmOrderButton_Click(object sender, EventArgs e) {
-
+            //MessageBox.Show(btnManager.addedIds.Count().ToString());
+            if (ButtonManager.addedIds.Count() != 0)
+            {
+                MessageBox.Show($"Złożono zamówienie nr. {Kebus.NextOrderId()}.\nDo zapłaty: {ButtonManager.sum.ToString("c2", ButtonManager.ci)}.");
+                Kebus.CreateOrder(ButtonManager.addedIds.ToArray());
+                ButtonManager.addedIds.Clear();
+                ButtonManager.sum = 0;
+                orderView.getOrderList().Items.Clear();
+                TotalPriceLabel.Text = $"Suma: {ButtonManager.sum.ToString("c2", ButtonManager.ci)}";
+                //Close();
+            }
+            else
+                MessageBox.Show("Nie wybrano żadnego produktu.\nSkładanie zamówienia nie powiodło się.");
         }
 
         private void ShowOrderButton_Click(object sender, EventArgs e) {
             Hide();
-            orderView.selfCheckoutSum = btnManager.sum;
             orderView.ShowDialog();
             Show();
+        }
+
+        private void SelfCheckout_Load(object sender, EventArgs e)
+        {
+            TotalPriceLabel.Text = $"Suma: {ButtonManager.sum.ToString("c2", ButtonManager.ci)}";
         }
     }
 }

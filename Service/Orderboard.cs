@@ -14,7 +14,28 @@ namespace Kebus {
     public partial class Orderboard : MaterialForm {
 
         private readonly MaterialSkinManager materialSkinManager;
-
+        private const int POS_X = 14;
+        private const int SIZE_X_BOX = 563;
+        private const int SIZE_X_LABEL = 553;
+        private const int SIZE_Y_BOX = 60;
+        private const int SIZE_Y_LABEL = 50;
+        private int readyOrders = 0;
+        private int pendingOrders = 0;
+        private DataSyncer<(string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[]> syncer;
+        private MaterialLabel readyName = new()
+        {
+            Size = new(SIZE_X_BOX, SIZE_Y_BOX),
+            Location = new(POS_X, 5),
+            TextAlign = ContentAlignment.MiddleCenter,
+            Text = "Gotowe Zamówienia",
+    };
+        private MaterialLabel pendingName = new()
+        {
+            Size = new(SIZE_X_BOX, SIZE_Y_BOX),
+            Location = new(POS_X, 5),
+            TextAlign = ContentAlignment.MiddleCenter,
+            Text = "Przygotowywane Zamówienia",
+    };
         public Orderboard() {
             InitializeComponent();
             materialSkinManager = MaterialSkinManager.Instance;
@@ -23,6 +44,54 @@ namespace Kebus {
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Color.FromArgb(37, 46, 56), Color.FromArgb(37, 46, 56),
                 Color.FromArgb(143, 46, 56), Color.FromArgb(29, 41, 53), TextShade.WHITE);
+
+            syncer = new(Kebus.GetOrders, Orderboard_Load);
+            syncer.RunWorkerAsync();
+        }
+
+        private void Orderboard_Load()
+        {
+            SplitContainer.Panel1.Controls.Clear();
+            SplitContainer.Panel2.Controls.Clear();
+
+            SplitContainer.Panel1.Controls.Add(pendingName);
+            SplitContainer.Panel2.Controls.Add(readyName);
+
+            readyOrders = 0;
+            pendingOrders = 0;
+            (string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[] es = syncer.CurrentData!;
+            for (int i = 0; i < es.Count(); i++) 
+            {
+                MaterialCard card = new()
+                {
+                    /*Location = new(POS_X, 64 + (60 + 10) * pendingOrders),*/
+                    Size = new(SIZE_X_BOX, SIZE_Y_BOX),
+                };
+                MaterialLabel label = new()
+                {
+                    /*Location = new(POS_X + 5, 69 + (50 + 20) * pendingOrders),*/
+                    Size = new(SIZE_X_LABEL, SIZE_Y_LABEL),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                };
+                //MessageBox.Show(label.SkinManager.BackgroundColor.ToString());
+                label.Text = es[i].id.Split("|")[0].PadLeft(3, '0');
+                if(es[i].items.All(item => item.state))
+                {
+                    card.Location = new(POS_X, 64 + (60 + 10) * readyOrders);
+                    label.Location = new(POS_X + 5, 69 + (50 + 20) * readyOrders);
+                    SplitContainer.Panel2.Controls.Add(label);
+                    SplitContainer.Panel2.Controls.Add(card);
+                    readyOrders++;
+                }
+                else
+                {
+                    card.Location = new(POS_X, 64 + (60 + 10) * pendingOrders);
+                    label.Location = new(POS_X + 5, 69 + (50 + 20) * pendingOrders);
+                    SplitContainer.Panel1.Controls.Add(label);
+                    SplitContainer.Panel1.Controls.Add(card);
+                    pendingOrders++;
+                }
+            }
         }
     }
 }

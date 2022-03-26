@@ -174,6 +174,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kebus System : Kasa Samoobsługowa";
+            this.Load += new System.EventHandler(this.SelfCheckout_Load);
             this.DishesTabControl.ResumeLayout(false);
             this.PaymentPanel.ResumeLayout(false);
             this.PaymentPanel.PerformLayout();

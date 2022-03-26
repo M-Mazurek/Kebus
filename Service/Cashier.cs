@@ -18,7 +18,7 @@ namespace Kebus
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-            materialSkinManager.ColorScheme = new ColorScheme(Color.FromArgb(37, 46, 56), Color.FromArgb(37, 46, 56), 
+            materialSkinManager.ColorScheme = new ColorScheme(Color.FromArgb(37, 46, 56), Color.FromArgb(37, 46, 56),
                 Color.FromArgb(143, 46, 56), Color.FromArgb(29, 41, 53), TextShade.WHITE);
 
             /*for (int a = 0; a < 5; a++)
@@ -28,22 +28,45 @@ namespace Kebus
                 Kebus.AddMenuItem("Drin", 15, Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS);
             }*/
             btnManager = new(this, OrderList, new() { KebabsPage, FriesPage, DrinksPage }, TotalPriceLabel);
-            Kebus.GetMenuItems().ToList().ForEach(menuItem => 
+            Kebus.GetMenuItems().ToList().ForEach(menuItem =>
             {
                 btnManager.CreateDish((menuItem.id, menuItem.name, menuItem.cost, menuItem.category));
             });
+
+            OrderList.MouseDoubleClick += OrderList_MouseDoubleClick;
         }
 
-        private void ConfirmOrder_Click(object sender, EventArgs e) =>
-            MessageBox.Show($"Złożono zamówienie {Math.Cos(Math.Cos(Math.Cos(0.768)))}!", "Potwierdzenie", MessageBoxButtons.OK);
-        
+        private void OrderList_MouseDoubleClick(object? sender, MouseEventArgs e)
+        {
+            MaterialListView item = sender as MaterialListView;
+            ButtonManager.sum -= float.Parse(item.SelectedItems[0].SubItems[2].Text);
+            TotalPriceLabel.Text = $"Suma: {ButtonManager.sum.ToString("c2", ButtonManager.ci)}";
 
+            item.SelectedItems[0].Remove();
+        }
+
+        private void ConfirmOrder_Click(object sender, EventArgs e)
+        {
+            if (ButtonManager.addedIds.Count != 0)
+            {
+                MessageBox.Show($"Złożono zamówienie nr. {Kebus.NextOrderId()}!", "Potwierdzenie", MessageBoxButtons.OK);
+                Kebus.CreateOrder(ButtonManager.addedIds.ToArray());
+                OrderList.Items.Clear();
+                ButtonManager.sum = 0;
+                TotalPriceLabel.Text = $"Suma: {ButtonManager.sum.ToString("c2", ButtonManager.ci)}";
+                ButtonManager.addedIds = null;
+            }
+            else
+                MessageBox.Show("Puste zamówienie?");
+        }
+        
         private void CancelOrder_Click(object sender, EventArgs e) {
             if (MessageBox.Show("Proces ten jest nieodwracalny!", "Potwierdzenie anulowania", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 OrderList.Items.Clear();
                 TotalPriceLabel.Text = "Suma: 0.00 zł";
-                btnManager.sum = 0;
+                ButtonManager.sum = 0;
+                ButtonManager.addedIds = null;
             }
         }
 

@@ -83,7 +83,7 @@ namespace Kebus
         public static (uint id, string name, float cost, MENU_ITEM_CATEGORY category)[] GetMenuItems() =>
             _menuItems.Find(EMPTY_FILTER).ToList().Select(doc => ExplodeMenuItem(doc)).ToArray();
 
-        private static uint NextOrderId()
+        public static uint NextOrderId()
         {
             var orders = _orders.Find(EMPTY_FILTER).ToList();
             if (orders.Count == 0)
@@ -99,7 +99,7 @@ namespace Kebus
             var itemsWithState = menuItemIds.Select(item => (item, false));
 
             dynamic order = new ExpandoObject();
-            order._id = $"{NextOrderId()}|{DateOnly.FromDateTime(DateTime.Now)}";
+            order._id = $"{NextOrderId()}|{DateOnly.FromDateTime(DateTime.Now).ToShortDateString().Replace('/', '.')}";
             order.order_time = DateTime.Now.ToUniversalTime();
             order.menu_items = itemsWithState;
 

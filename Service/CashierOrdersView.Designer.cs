@@ -57,8 +57,10 @@
             this.ContentScroll.Name = "ContentScroll";
             this.ContentScroll.Orientation = MaterialSkin.Controls.MaterialScrollOrientation.Horizontal;
             this.ContentScroll.Size = new System.Drawing.Size(1194, 10);
+            this.ContentScroll.SmallChange = 5;
             this.ContentScroll.TabIndex = 1;
             this.ContentScroll.Text = "materialScrollBar1";
+            this.ContentScroll.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ContentScroll_Scroll);
             // 
             // CashierOrdersView
             // 
@@ -75,6 +77,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kebus System : Ekspedient";
+            this.Load += new System.EventHandler(this.CashierOrdersView_Load);
             this.ResumeLayout(false);
 
         }

@@ -11,16 +11,25 @@ namespace Kebus.Service
 
     internal class ButtonManager
     {
-        private int i = 0;
-        private int yPad = 0;
-        private int xPad = 0;
-        private int count = 0;
-        internal float sum = 0;
-        private CultureInfo ci = new("pl-PL");
+        private int f = 0;
+        private int k = 0;
+        private int d = 0;
+        private int yPadF = 0;
+        private int xPadF = 0;
+        private int yPadK = 0;
+        private int xPadK = 0;
+        private int yPadD = 0;
+        private int xPadD = 0;
+        private int friesCount = 0;
+        private int kebabsCount = 0;
+        private int drinksCount = 0;
+        internal static float sum = 0;
+        internal static CultureInfo ci = new("pl-PL");
         private MaterialForm form = null;
         private MaterialListView listView = null;
         private List<TabPage> tabControls = null;
         private MaterialLabel label = null;
+        internal static List<uint> addedIds = new();
 
         public ButtonManager() 
         {
@@ -34,13 +43,13 @@ namespace Kebus.Service
             label = lb;
         }
 
-        private MaterialButton CreateButton(string name, float cost)
+        private MaterialButton CreateButton(uint id, string name, float cost, int x, int y)
         {
             MaterialButton materialButton = new()
             {
                 Text = name,
                 AutoSize = false,
-                Location = new(25 + (200 + 25) * xPad, 40 + (80 + 40) * yPad),
+                Location = new(25 + (200 + 25) * x, 40 + (80 + 40) * y),
                 Size = new(200, 80),
             };
             materialButton.Click += (sender, e) =>
@@ -48,6 +57,7 @@ namespace Kebus.Service
                 listView.Items.Add(new ListViewItem(new string[] { "1", name, cost.ToString() }));
                 sum += cost;
                 label.Text = $"Suma: {sum.ToString("c2", ci)}";
+                addedIds.Add(id);
             };
             return materialButton;
         }
@@ -57,24 +67,46 @@ namespace Kebus.Service
             switch (dish.category)
             {
                 case Kebus.MENU_ITEM_CATEGORY.FRIES:
-                    if (count % 3 == 0 && count != 0)
+                    if (friesCount % 3 == 0 && friesCount != 0)
                     {
-                        i++;
-                        yPad = i;
-                        xPad = 0;
+                        f++;
+                        yPadF = f;
+                        xPadF = 0;
                     }
-                    else if (count != 0)
+                    else if (friesCount != 0)
                     {
-                        xPad++;
+                        xPadF++;
                     }
-                    tabControls[1].Controls.Add(CreateButton(dish.name, dish.cost));
-                    count++;
+                    tabControls[1].Controls.Add(CreateButton(dish.id, dish.name, dish.cost, xPadF, yPadF));
+                    friesCount++;
                     break;
                 case Kebus.MENU_ITEM_CATEGORY.KEBABS:
-                    tabControls[0].Controls.Add(CreateButton(dish.name, dish.cost));
+                    if (kebabsCount % 3 == 0 && kebabsCount != 0)
+                    {
+                        k++;
+                        yPadK = k;
+                        xPadK = 0;
+                    }
+                    else if (kebabsCount != 0)
+                    {
+                        xPadK++;
+                    }
+                    tabControls[0].Controls.Add(CreateButton(dish.id, dish.name, dish.cost, xPadK, yPadK));
+                    kebabsCount++;
                     break;
                 case Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS:
-                    tabControls[2].Controls.Add(CreateButton(dish.name, dish.cost));
+                    if (drinksCount % 3 == 0 && drinksCount != 0)
+                    {
+                        d++;
+                        yPadD = d;
+                        xPadD = 0;
+                    }
+                    else if (drinksCount != 0)
+                    {
+                        xPadD++;
+                    }
+                    tabControls[2].Controls.Add(CreateButton(dish.id, dish.name, dish.cost, xPadD, yPadD));
+                    drinksCount++;
                     break;
                 default:
                     throw new Exception("Unexpected category");

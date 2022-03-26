@@ -34,7 +34,6 @@
             // 
             // SplitContainer
             // 
-            this.SplitContainer.Cursor = System.Windows.Forms.Cursors.Default;
             this.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContainer.Location = new System.Drawing.Point(3, 64);
             this.SplitContainer.Name = "SplitContainer";
@@ -53,7 +52,6 @@
             // materialLabel1
             // 
             this.materialLabel1.AutoSize = true;
-            this.materialLabel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel1.Location = new System.Drawing.Point(148, 31);
@@ -66,7 +64,6 @@
             // materialLabel2
             // 
             this.materialLabel2.AutoSize = true;
-            this.materialLabel2.Cursor = System.Windows.Forms.Cursors.Default;
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel2.Location = new System.Drawing.Point(206, 31);
