@@ -14,6 +14,7 @@ namespace Kebus.Service {
     public partial class ManagerOrdersView : MaterialForm {
 
         private readonly MaterialSkinManager materialSkinManager;
+        (string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[] orders;
 
         public ManagerOrdersView() {
             InitializeComponent();
@@ -23,6 +24,9 @@ namespace Kebus.Service {
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Color.FromArgb(37, 46, 56), Color.FromArgb(37, 46, 56),
                 Color.FromArgb(143, 46, 56), Color.FromArgb(29, 41, 53), TextShade.WHITE);
+
+            orders = Kebus.GetArchivizedOrders();
+            DisplayOrders();
         }
 
         private void ShowOrdersButton_Click(object sender, EventArgs e) {
@@ -51,6 +55,23 @@ namespace Kebus.Service {
             ManagerRaport managerRaport = new();
             managerRaport.ShowDialog();
             Close();
+        }
+
+        private void DisplayOrders()
+        {
+            LastOrdersList.Items.Clear();
+
+            foreach (var (id, created, items) in orders.Reverse())
+            {
+                ListViewItem lvi = new(new string[]
+                {
+                    id.Split('|')[0].PadLeft(3, '0').ToString(),
+                    string.Join(", ", items.Select(x => x.item.name)),
+                    id.Split('|')[1],
+                    items.Select(x => x.item.cost).Sum().ToString()
+                });
+                LastOrdersList.Items.Add(lvi);
+            }
         }
     }
 }
