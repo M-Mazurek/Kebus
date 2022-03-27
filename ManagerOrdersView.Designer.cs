@@ -31,7 +31,6 @@
             this.OrderPrice = new System.Windows.Forms.ColumnHeader();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.Sidebar = new System.Windows.Forms.Panel();
-            this.CreateRaportButton = new MaterialSkin.Controls.MaterialButton();
             this.ShowMenuButton = new MaterialSkin.Controls.MaterialButton();
             this.ShowStatisticsButton = new MaterialSkin.Controls.MaterialButton();
             this.ShowOrdersButton = new MaterialSkin.Controls.MaterialButton();
@@ -106,7 +105,6 @@
             // 
             // Sidebar
             // 
-            this.Sidebar.Controls.Add(this.CreateRaportButton);
             this.Sidebar.Controls.Add(this.ShowMenuButton);
             this.Sidebar.Controls.Add(this.ShowStatisticsButton);
             this.Sidebar.Controls.Add(this.ShowOrdersButton);
@@ -114,27 +112,6 @@
             this.Sidebar.Name = "Sidebar";
             this.Sidebar.Size = new System.Drawing.Size(249, 627);
             this.Sidebar.TabIndex = 1;
-            // 
-            // CreateRaportButton
-            // 
-            this.CreateRaportButton.AutoSize = false;
-            this.CreateRaportButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CreateRaportButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.CreateRaportButton.Depth = 0;
-            this.CreateRaportButton.HighEmphasis = true;
-            this.CreateRaportButton.Icon = null;
-            this.CreateRaportButton.Location = new System.Drawing.Point(29, 561);
-            this.CreateRaportButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.CreateRaportButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CreateRaportButton.Name = "CreateRaportButton";
-            this.CreateRaportButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.CreateRaportButton.Size = new System.Drawing.Size(190, 40);
-            this.CreateRaportButton.TabIndex = 7;
-            this.CreateRaportButton.Text = "Utwórz raport";
-            this.CreateRaportButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.CreateRaportButton.UseAccentColor = false;
-            this.CreateRaportButton.UseVisualStyleBackColor = true;
-            this.CreateRaportButton.Click += new System.EventHandler(this.CreateRaportButton_Click);
             // 
             // ShowMenuButton
             // 
@@ -227,7 +204,6 @@
         private Panel ContentPanel;
         private Panel Sidebar;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialButton CreateRaportButton;
         private MaterialSkin.Controls.MaterialButton ShowMenuButton;
         private MaterialSkin.Controls.MaterialButton ShowStatisticsButton;
         private MaterialSkin.Controls.MaterialButton ShowOrdersButton;

@@ -47,6 +47,9 @@ namespace Kebus {
 
             syncer = new(Kebus.GetOrders, Orderboard_Load, this);
             syncer.RunWorkerAsync();
+
+            if(syncer.CurrentData != null)
+                Orderboard_Load();
         }
 
         private void Orderboard_Load()
