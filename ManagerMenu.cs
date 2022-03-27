@@ -29,7 +29,7 @@ namespace Kebus {
             materialSkinManager.ColorScheme = new ColorScheme(Color.FromArgb(37, 46, 56), Color.FromArgb(37, 46, 56),
                 Color.FromArgb(143, 46, 56), Color.FromArgb(29, 41, 53), TextShade.WHITE);
 
-            _menuItemsSyncer = new(Kebus.GetMenuItems, UpdateMenuList);
+            _menuItemsSyncer = new(Kebus.GetMenuItems, UpdateMenuList, this);
             _menuItemsSyncer.RunWorkerAsync();
         }
 

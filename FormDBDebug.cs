@@ -22,8 +22,8 @@ namespace Kebus
         public FormDBDebug()
         {
             InitializeComponent();
-            _menuItemsSyncer = new(Kebus.GetMenuItems, RefreshMenuDisplay);
-            _orderListSyncer = new(Kebus.GetOrders, RefreshOrderListDisplay);
+            _menuItemsSyncer = new(Kebus.GetMenuItems, RefreshMenuDisplay, this);
+            _orderListSyncer = new(Kebus.GetOrders, RefreshOrderListDisplay, this);
 
             _menuItemsSyncer.RunWorkerAsync();
             _orderListSyncer.RunWorkerAsync();
