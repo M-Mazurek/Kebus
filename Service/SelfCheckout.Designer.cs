@@ -69,6 +69,7 @@
             // 
             // KebabsPage
             // 
+            this.KebabsPage.AutoScroll = true;
             this.KebabsPage.CausesValidation = false;
             this.KebabsPage.Location = new System.Drawing.Point(4, 30);
             this.KebabsPage.Name = "KebabsPage";
