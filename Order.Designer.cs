@@ -57,7 +57,7 @@
             this.materialButton1.Size = new System.Drawing.Size(71, 36);
             this.materialButton1.TabIndex = 2;
             this.materialButton1.Text = "WYDAJ";
-            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton1.UseAccentColor = true;
             this.materialButton1.UseVisualStyleBackColor = true;
             // 
@@ -90,13 +90,13 @@
             // Item
             // 
             this.Item.Text = "Potrawa";
-            this.Item.Width = 140;
+            this.Item.Width = 190;
             // 
             // Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.materialListView1);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.materialButton1);
