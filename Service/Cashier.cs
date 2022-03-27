@@ -21,12 +21,11 @@ namespace Kebus
             materialSkinManager.ColorScheme = new ColorScheme(Color.FromArgb(37, 46, 56), Color.FromArgb(37, 46, 56),
                 Color.FromArgb(143, 46, 56), Color.FromArgb(29, 41, 53), TextShade.WHITE);
 
-            /*for (int a = 0; a < 5; a++)
-            {
-                Kebus.AddMenuItem("kebab", 15, Kebus.MENU_ITEM_CATEGORY.KEBABS);
-                Kebus.AddMenuItem("Fryta", 15, Kebus.MENU_ITEM_CATEGORY.FRIES);
-                Kebus.AddMenuItem("Drin", 15, Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS);
-            }*/
+            //for (int a = 0; a < 5; a++) {
+            //    Kebus.AddMenuItem("kebab", 15, Kebus.MENU_ITEM_CATEGORY.KEBABS);
+            //    Kebus.AddMenuItem("Fryta", 15, Kebus.MENU_ITEM_CATEGORY.FRIES);
+            //    Kebus.AddMenuItem("Drin", 15, Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS);
+            //}
             btnManager = new(this, OrderList, new() { KebabsPage, FriesPage, DrinksPage }, TotalPriceLabel);
             Kebus.GetMenuItems().ToList().ForEach(menuItem =>
             {
@@ -34,6 +33,12 @@ namespace Kebus
             });
 
             OrderList.MouseDoubleClick += OrderList_MouseDoubleClick;
+
+            // : - )
+            //drinksScroll.Value = DrinksPage.VerticalScroll.Value;
+            //drinksScroll.Minimum = DrinksPage.VerticalScroll.Minimum;
+            //drinksScroll.Maximum = DrinksPage.VerticalScroll.Maximum;
+            
         }
 
         private void OrderList_MouseDoubleClick(object? sender, MouseEventArgs e)
@@ -76,5 +81,7 @@ namespace Kebus
             cashierOrdersView.ShowDialog();
             Show();
         }
+
+
     }
 }

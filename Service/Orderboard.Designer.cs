@@ -40,10 +40,12 @@
             // 
             // SplitContainer.Panel1
             // 
+            this.SplitContainer.Panel1.AutoScroll = true;
             this.SplitContainer.Panel1.Controls.Add(this.materialLabel1);
             // 
             // SplitContainer.Panel2
             // 
+            this.SplitContainer.Panel2.AutoScroll = true;
             this.SplitContainer.Panel2.Controls.Add(this.materialLabel2);
             this.SplitContainer.Size = new System.Drawing.Size(1194, 633);
             this.SplitContainer.SplitterDistance = 591;

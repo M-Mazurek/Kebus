@@ -109,7 +109,10 @@
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.Confirm);
             this.Controls.Add(this.PositionComboBox);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "PositionSelector";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kebus System : Wybór Stanowiska";
             this.ResumeLayout(false);

@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
-            this.ContentScroll = new MaterialSkin.Controls.MaterialScrollBar();
+            this.Panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // materialButton1
@@ -48,26 +48,22 @@
             this.materialButton1.UseVisualStyleBackColor = true;
             this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
             // 
-            // ContentScroll
+            // Panel
             // 
-            this.ContentScroll.Depth = 0;
-            this.ContentScroll.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ContentScroll.Location = new System.Drawing.Point(3, 687);
-            this.ContentScroll.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ContentScroll.Name = "ContentScroll";
-            this.ContentScroll.Orientation = MaterialSkin.Controls.MaterialScrollOrientation.Horizontal;
-            this.ContentScroll.Size = new System.Drawing.Size(1194, 10);
-            this.ContentScroll.SmallChange = 5;
-            this.ContentScroll.TabIndex = 1;
-            this.ContentScroll.Text = "materialScrollBar1";
-            this.ContentScroll.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ContentScroll_Scroll);
+            this.Panel.AutoScroll = true;
+            this.Panel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Panel.Location = new System.Drawing.Point(3, 64);
+            this.Panel.Name = "Panel";
+            this.Panel.Size = new System.Drawing.Size(1194, 562);
+            this.Panel.TabIndex = 1;
             // 
             // CashierOrdersView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1200, 700);
-            this.Controls.Add(this.ContentScroll);
+            this.Controls.Add(this.Panel);
             this.Controls.Add(this.materialButton1);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1200, 700);
@@ -85,6 +81,6 @@
         #endregion
 
         private MaterialSkin.Controls.MaterialButton materialButton1;
-        private MaterialSkin.Controls.MaterialScrollBar ContentScroll;
+        private Panel Panel;
     }
 }

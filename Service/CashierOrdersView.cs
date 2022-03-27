@@ -47,7 +47,7 @@ namespace Kebus {
                 MaterialListView listView = new()
                 {
                     Size = new(500, 520),
-                    Location = new(25 + (500 + 25) * i, 90),
+                    Location = new(25 + (500 + 25) * i, 10),
                 };
                 foreach (string x in new string[] { "Numer", "Utworzony", "Nazwa", "Koszt", "Kategoria", "Gotowe" })
                 {
@@ -57,7 +57,7 @@ namespace Kebus {
                 {
                     listView.Items.Add(new ListViewItem(new string[] { es[i].id.Split("|")[0].PadLeft(3,'0'), es[i].created.ToString(), es[i].items[j].item.name, es[i].items[0].item.cost.ToString(), es[i].items[j].item.category.ToString(), es[i].items[j].state.ToString() }));
                 }
-                Controls.Add(listView);
+                Panel.Controls.Add(listView);
             }
             //ContentScroll.MaximumSize = new(25 + (500 + 25) * es.Count(), 10);
             //ContentScroll.Maximum = 100 * es.Count(); //25 + (500 + 25) * es.Count()

@@ -9,13 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Kebus.Service;
 
 namespace Kebus {
     public partial class Cook : MaterialForm {
 
         private readonly MaterialSkinManager materialSkinManager;
         
-        // todo: add panels loader 
+        
 
         public Cook(string positionName) {
             InitializeComponent();

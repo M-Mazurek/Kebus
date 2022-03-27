@@ -23,27 +23,23 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.ContentScroll = new MaterialSkin.Controls.MaterialScrollBar();
+            this.Panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // ContentScroll
+            // Panel
             // 
-            this.ContentScroll.Depth = 0;
-            this.ContentScroll.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ContentScroll.Location = new System.Drawing.Point(3, 687);
-            this.ContentScroll.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ContentScroll.Name = "ContentScroll";
-            this.ContentScroll.Orientation = MaterialSkin.Controls.MaterialScrollOrientation.Horizontal;
-            this.ContentScroll.Size = new System.Drawing.Size(1194, 10);
-            this.ContentScroll.TabIndex = 0;
-            this.ContentScroll.Text = "materialScrollBar1";
+            this.Panel.AutoScroll = true;
+            this.Panel.Location = new System.Drawing.Point(6, 67);
+            this.Panel.Name = "Panel";
+            this.Panel.Size = new System.Drawing.Size(1191, 627);
+            this.Panel.TabIndex = 1;
             // 
             // Bagger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 700);
-            this.Controls.Add(this.ContentScroll);
+            this.Controls.Add(this.Panel);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1200, 700);
             this.MinimizeBox = false;
@@ -58,6 +54,6 @@
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialScrollBar ContentScroll;
+        private Panel Panel;
     }
 }

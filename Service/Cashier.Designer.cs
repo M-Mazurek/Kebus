@@ -91,6 +91,7 @@
             // 
             // KebabsPage
             // 
+            this.KebabsPage.AutoScroll = true;
             this.KebabsPage.CausesValidation = false;
             this.KebabsPage.Location = new System.Drawing.Point(4, 30);
             this.KebabsPage.Name = "KebabsPage";
@@ -98,25 +99,24 @@
             this.KebabsPage.Size = new System.Drawing.Size(819, 542);
             this.KebabsPage.TabIndex = 1;
             this.KebabsPage.Text = "KEBABY";
-            this.KebabsPage.UseVisualStyleBackColor = true;
             // 
             // FriesPage
             // 
+            this.FriesPage.AutoScroll = true;
             this.FriesPage.Location = new System.Drawing.Point(4, 30);
             this.FriesPage.Name = "FriesPage";
             this.FriesPage.Size = new System.Drawing.Size(819, 542);
             this.FriesPage.TabIndex = 2;
             this.FriesPage.Text = "FRYTKI";
-            this.FriesPage.UseVisualStyleBackColor = true;
             // 
             // DrinksPage
             // 
+            this.DrinksPage.AutoScroll = true;
             this.DrinksPage.Location = new System.Drawing.Point(4, 30);
             this.DrinksPage.Name = "DrinksPage";
             this.DrinksPage.Size = new System.Drawing.Size(819, 542);
             this.DrinksPage.TabIndex = 3;
             this.DrinksPage.Text = "NAPOJE I DESERY";
-            this.DrinksPage.UseVisualStyleBackColor = true;
             // 
             // DishesTabSelector
             // 
