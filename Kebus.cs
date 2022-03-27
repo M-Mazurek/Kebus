@@ -26,8 +26,8 @@ namespace Kebus
 
         public enum MENU_ITEM_CATEGORY
         {
-            FRIES,
             KEBABS,
+            FRIES,
             DESSERTS_AND_DRINKS
         }
         private static readonly FilterDefinition<BsonDocument> EMPTY_FILTER = Builders<BsonDocument>.Filter.Empty;
@@ -67,9 +67,17 @@ namespace Kebus
                 throw new Exception("Nazwa nowej pozycji w menu nie może być pusta.");
             
             cost = Math.Abs(cost);
-
+            uint id;
+            try
+            {
+                id = (uint)_menuItems.Find(EMPTY_FILTER).SortBy(x => x["_id"]).ToList()[^1]["_id"].AsInt32 + 1;
+            }
+            catch
+            {
+                id = 0;
+            }
             dynamic menuItem = new ExpandoObject();
-            menuItem._id = _menuItems.Find(EMPTY_FILTER).SortBy(x => x["_id"]).ToList()[^1]["_id"].AsInt32 + 1;
+            menuItem._id = id;
             menuItem.name = name;
             menuItem.cost = cost;
             menuItem.category = category;
@@ -86,9 +94,8 @@ namespace Kebus
         public static uint NextOrderId()
         {
             var orders = _orders.Find(EMPTY_FILTER).ToList();
-            if (orders.Count == 0)
-                return 1;
-            return orders.Max(order => uint.Parse(order["_id"].AsString.Split('|')[0])) + 1;
+            var aorders = _orderLogs.Find(EMPTY_FILTER).ToList(); 
+            return (uint)(orders.Count + aorders.Count) + 1;
         }
 
         public static void CreateOrder(uint[] menuItemIds)
