@@ -34,11 +34,12 @@
             // 
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(88, 21);
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel1.Location = new System.Drawing.Point(73, 21);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(118, 19);
+            this.materialLabel1.Size = new System.Drawing.Size(149, 24);
             this.materialLabel1.TabIndex = 3;
             this.materialLabel1.Text = "Zamówienie { x }";
             // 
@@ -85,12 +86,12 @@
             // Count
             // 
             this.Count.Text = "Ilość";
-            this.Count.Width = 100;
+            this.Count.Width = 80;
             // 
             // Item
             // 
             this.Item.Text = "Potrawa";
-            this.Item.Width = 190;
+            this.Item.Width = 240;
             // 
             // Order
             // 
