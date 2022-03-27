@@ -16,8 +16,10 @@ namespace Kebus {
 
         private readonly MaterialSkinManager materialSkinManager;
         private DataSyncer<(string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[]> syncer;
-        private int POS_X = 0;
-        private int POS_Y = 0;
+        private int POS_X = 15;
+        private int POS_Y = 60;
+        private Kebus.MENU_ITEM_CATEGORY category;
+        private int count = 0;
         public Cook(Kebus.MENU_ITEM_CATEGORY category) {
             InitializeComponent();
             Text = $"Kebus System : Stanowisko {category switch { Kebus.MENU_ITEM_CATEGORY.FRIES => "Frytkarza", Kebus.MENU_ITEM_CATEGORY.KEBABS => "Kebusiarza", Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS => "Drinarza",_ => throw(new("Unexpected category")),}}"; // polish is ..., so u have to use genetive : D
@@ -28,6 +30,7 @@ namespace Kebus {
             materialSkinManager.ColorScheme = new ColorScheme(Color.FromArgb(37, 46, 56), Color.FromArgb(37, 46, 56),
                 Color.FromArgb(143, 46, 56), Color.FromArgb(29, 41, 53), TextShade.WHITE);
 
+            this.category = category;
             syncer = new(Kebus.GetOrders, Draw);
             syncer.RunWorkerAsync();
         }
@@ -37,13 +40,33 @@ namespace Kebus {
             (string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[] es = syncer.CurrentData!;
             for (int i = 0; i < es.Count(); i++) 
             {
-                Order order = new() 
+                for (int j = 0; j < es[i].items.Count(); j++)
                 {
-                    Location = new(15 + (new Order().Width + 15) * i, 15),
-                };
+                    if (es[i].items[j].item.category == category) 
+                    {
+                        Order order = new()
+                        {
+                            Location = new(POS_X + (new Order().Width + POS_X) * count, POS_Y),
+                        };
+                        order.materialListView1.Items.Add(new ListViewItem(new string[] { "1", es[i].items[j].item.name }));
+                        Panel.Controls.Add(order);
+                        count++;
+                    }
+                    /*switch (es[i].items[j].item.category)
+                    {
+                        case Kebus.MENU_ITEM_CATEGORY.FRIES:
+                            order.materialListView1.Items.Add(new ListViewItem(new string[] { "1", es[i].items[j].item.name }));
+                            break;
+                        case Kebus.MENU_ITEM_CATEGORY.KEBABS:
+                            order.materialListView1.Items.Add(new ListViewItem(new string[] { "1", es[i].items[j].item.name }));
+                            break;
+                        case Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS:
+                            order.materialListView1.Items.Add(new ListViewItem(new string[] { "1", es[i].items[j].item.name }));
+                            break;
+                    }*/
+                }
+                //order.materialListView1.Items.Add(new ListViewItem(new string[] { "Fryta", "15" }));
                 
-                order.materialListView1.Items.Add(new ListViewItem(new string[] { "Fryta", "15" }));
-                Panel.Controls.Add(order);
             }
         }
     }
