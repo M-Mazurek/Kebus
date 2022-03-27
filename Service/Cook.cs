@@ -31,31 +31,36 @@ namespace Kebus {
                 Color.FromArgb(143, 46, 56), Color.FromArgb(29, 41, 53), TextShade.WHITE);
 
             this.category = category;
-            syncer = new(Kebus.GetOrders, Draw);
+            syncer = new(Kebus.GetOrders, Draw, this);
             syncer.RunWorkerAsync();
         }
 
         private void Draw() 
         {
             (string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[] es = syncer.CurrentData!;
-            for (int i = 0; i < es.Count(); i++) 
+            //for (int i = 0; i < es.Count(); i++)
+            int i = 0;
+            foreach(var _es in es) 
             {
+                if (!_es.items.Any(x => x.item.category == category))
+                    continue;
                 Order order = new()
                 {
-                    //Location = new(POS_X + (new Order().Width + POS_X) * count, POS_Y),
+                    Location = new(POS_X + (new Order().Width + POS_X) * i, POS_Y),
                 };
-                for (int j = 0; j < es[i].items.Count(); j++)
+                for (int j = 0; j < _es.items.Count(); j++)
                 {
                     
-                    if (es[i].items[j].item.category == category) 
+                    if (_es.items[j].item.category == category) 
                     {
-                        order.materialLabel1.Text = $"Zamówienie: {es[i].id.Split("|")[0].PadLeft(3, '0')}";
-                        order.Location = new(POS_X + (new Order().Width + POS_X) * count, POS_Y);
-                        order.materialListView1.Items.Add(new ListViewItem(new string[] { "1", es[i].items[j].item.name }));
+                        order.materialLabel1.Text = $"Zamówienie: {_es.id.Split("|")[0].PadLeft(3, '0')}";
+                        //order.Location = new(POS_X + (new Order().Width + POS_X) * i, POS_Y);
+                        order.materialListView1.Items.Add(new ListViewItem(new string[] { "1", _es.items[j].item.name }));
                         Panel.Controls.Add(order);
                         count++;
                     }
-                }            
+                }
+                i++;
             }
             Order bugFix = new()
             {

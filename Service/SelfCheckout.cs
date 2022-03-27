@@ -32,7 +32,11 @@ namespace Kebus {
             {
                 btnManager.CreateDish((menuItem.id, menuItem.name, menuItem.cost, menuItem.category));
             });
-            
+            ButtonManager.addedIds.Clear();
+            orderView.getOrderList().Items.Clear();
+            ButtonManager.sum = 0;
+            TotalPriceLabel.Text = $"Suma: {ButtonManager.sum.ToString("c2", ButtonManager.ci)}";
+            ButtonManager.addedIds.Clear();
         }
         
         private void ConfirmOrderButton_Click(object sender, EventArgs e) {

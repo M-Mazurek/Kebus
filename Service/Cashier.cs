@@ -38,7 +38,13 @@ namespace Kebus
             //drinksScroll.Value = DrinksPage.VerticalScroll.Value;
             //drinksScroll.Minimum = DrinksPage.VerticalScroll.Minimum;
             //drinksScroll.Maximum = DrinksPage.VerticalScroll.Maximum;
-            
+
+            ButtonManager.addedIds.Clear();
+            OrderList.Items.Clear();
+            ButtonManager.sum = 0;
+            TotalPriceLabel.Text = $"Suma: {ButtonManager.sum.ToString("c2", ButtonManager.ci)}";
+            ButtonManager.addedIds.Clear();
+            OrderTitle.Text = $"Zamówienie: {Kebus.NextOrderId().ToString().PadLeft(3, '0')}";
         }
 
         private void OrderList_MouseDoubleClick(object? sender, MouseEventArgs e)
@@ -60,6 +66,7 @@ namespace Kebus
                 ButtonManager.sum = 0;
                 TotalPriceLabel.Text = $"Suma: {ButtonManager.sum.ToString("c2", ButtonManager.ci)}";
                 ButtonManager.addedIds.Clear();
+                OrderTitle.Text = $"Zamówienie: {Kebus.NextOrderId().ToString().PadLeft(3, '0')}";
             }
             else
                 MessageBox.Show("Puste zamówienie?");
