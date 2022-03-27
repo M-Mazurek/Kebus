@@ -18,10 +18,9 @@ namespace Kebus {
         private DataSyncer<(string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[]> syncer;
         private int POS_X = 0;
         private int POS_Y = 0;
-
-        public Cook(string positionName) {
+        public Cook(Kebus.MENU_ITEM_CATEGORY category) {
             InitializeComponent();
-            Text = $"Kebus System : Stanowisko {positionName}"; // polish is ..., so u have to use genetive : D
+            Text = $"Kebus System : Stanowisko {category switch { Kebus.MENU_ITEM_CATEGORY.FRIES => "Frytkarza", Kebus.MENU_ITEM_CATEGORY.KEBABS => "Kebusiarza", Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS => "Drinarza",_ => throw(new("Unexpected category")),}}"; // polish is ..., so u have to use genetive : D
             materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
@@ -42,6 +41,7 @@ namespace Kebus {
                 {
                     Location = new(15 + (new Order().Width + 15) * i, 15),
                 };
+                
                 order.materialListView1.Items.Add(new ListViewItem(new string[] { "Fryta", "15" }));
                 Panel.Controls.Add(order);
             }

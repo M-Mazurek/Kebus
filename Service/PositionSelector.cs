@@ -47,7 +47,7 @@ namespace Kebus {
                 case "Stanowisko Frytkarza": 
                 {
                     Hide();
-                    Cook cookView = new("Frytkarza");
+                    Cook cookView = new(Kebus.MENU_ITEM_CATEGORY.FRIES);
                     cookView.ShowDialog();
                     Show();
                     break;
@@ -55,7 +55,7 @@ namespace Kebus {
                 case "Stanowisko Kebusiarza": 
                 {
                     Hide();
-                    Cook cookView = new("Kebusiarza");
+                    Cook cookView = new(Kebus.MENU_ITEM_CATEGORY.KEBABS);
                     cookView.ShowDialog();
                     Show();
                     break;
@@ -63,7 +63,7 @@ namespace Kebus {
                 case "Stanowisko Napojów i Deserów": 
                 {
                     Hide();
-                    Cook cookView = new("Napojów i Deserów");
+                    Cook cookView = new(Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS);
                     cookView.ShowDialog();
                     Show();
                     break;
