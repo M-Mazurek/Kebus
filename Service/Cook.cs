@@ -15,8 +15,9 @@ namespace Kebus {
     public partial class Cook : MaterialForm {
 
         private readonly MaterialSkinManager materialSkinManager;
-        
-        
+        private DataSyncer<(string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[]> syncer;
+        private int POS_X = 0;
+        private int POS_Y = 0;
 
         public Cook(string positionName) {
             InitializeComponent();
@@ -27,6 +28,23 @@ namespace Kebus {
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Color.FromArgb(37, 46, 56), Color.FromArgb(37, 46, 56),
                 Color.FromArgb(143, 46, 56), Color.FromArgb(29, 41, 53), TextShade.WHITE);
+
+            syncer = new(Kebus.GetOrders, Draw);
+            syncer.RunWorkerAsync();
+        }
+
+        private void Draw() 
+        {
+            (string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[] es = syncer.CurrentData!;
+            for (int i = 0; i < es.Count(); i++) 
+            {
+                Order order = new() 
+                {
+                    Location = new(15 + (new Order().Width + 15) * i, 15),
+                };
+                order.materialListView1.Items.Add(new ListViewItem(new string[] { "Fryta", "15" }));
+                Panel.Controls.Add(order);
+            }
         }
     }
 }

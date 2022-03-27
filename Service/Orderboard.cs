@@ -14,9 +14,9 @@ namespace Kebus {
     public partial class Orderboard : MaterialForm {
 
         private readonly MaterialSkinManager materialSkinManager;
-        private const int POS_X = 14;
-        private const int SIZE_X_BOX = 563;
-        private const int SIZE_X_LABEL = 553;
+        private const int POS_X = 9;
+        private const int SIZE_X_BOX = 558;
+        private const int SIZE_X_LABEL = 548;
         private const int SIZE_Y_BOX = 60;
         private const int SIZE_Y_LABEL = 50;
         private int readyOrders = 0;

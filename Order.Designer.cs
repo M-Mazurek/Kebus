@@ -109,9 +109,9 @@
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
-        private MaterialSkin.Controls.MaterialListView materialListView1;
+        public MaterialSkin.Controls.MaterialLabel materialLabel1;
+        public MaterialSkin.Controls.MaterialButton materialButton1;
+        public MaterialSkin.Controls.MaterialListView materialListView1;
         private ColumnHeader Count;
         private ColumnHeader Item;
     }
