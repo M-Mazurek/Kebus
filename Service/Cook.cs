@@ -40,34 +40,27 @@ namespace Kebus {
             (string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[] es = syncer.CurrentData!;
             for (int i = 0; i < es.Count(); i++) 
             {
+                Order order = new()
+                {
+                    //Location = new(POS_X + (new Order().Width + POS_X) * count, POS_Y),
+                };
                 for (int j = 0; j < es[i].items.Count(); j++)
                 {
+                    
                     if (es[i].items[j].item.category == category) 
                     {
-                        Order order = new()
-                        {
-                            Location = new(POS_X + (new Order().Width + POS_X) * count, POS_Y),
-                        };
+                        order.materialLabel1.Text = $"Zamówienie: {es[i].id.Split("|")[0].PadLeft(3, '0')}";
+                        order.Location = new(POS_X + (new Order().Width + POS_X) * count, POS_Y);
                         order.materialListView1.Items.Add(new ListViewItem(new string[] { "1", es[i].items[j].item.name }));
                         Panel.Controls.Add(order);
                         count++;
                     }
-                    /*switch (es[i].items[j].item.category)
-                    {
-                        case Kebus.MENU_ITEM_CATEGORY.FRIES:
-                            order.materialListView1.Items.Add(new ListViewItem(new string[] { "1", es[i].items[j].item.name }));
-                            break;
-                        case Kebus.MENU_ITEM_CATEGORY.KEBABS:
-                            order.materialListView1.Items.Add(new ListViewItem(new string[] { "1", es[i].items[j].item.name }));
-                            break;
-                        case Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS:
-                            order.materialListView1.Items.Add(new ListViewItem(new string[] { "1", es[i].items[j].item.name }));
-                            break;
-                    }*/
-                }
-                //order.materialListView1.Items.Add(new ListViewItem(new string[] { "Fryta", "15" }));
-                
+                }            
             }
+            Order bugFix = new()
+            {
+                Location = new(POS_X + (new Order().Width + POS_X) * count, POS_Y),
+            };
         }
     }
 }

@@ -59,7 +59,7 @@ namespace Kebus
                 OrderList.Items.Clear();
                 ButtonManager.sum = 0;
                 TotalPriceLabel.Text = $"Suma: {ButtonManager.sum.ToString("c2", ButtonManager.ci)}";
-                ButtonManager.addedIds = null;
+                ButtonManager.addedIds.Clear();
             }
             else
                 MessageBox.Show("Puste zamówienie?");
@@ -71,7 +71,7 @@ namespace Kebus
                 OrderList.Items.Clear();
                 TotalPriceLabel.Text = "Suma: 0.00 zł";
                 ButtonManager.sum = 0;
-                ButtonManager.addedIds = null;
+                ButtonManager.addedIds.Clear();
             }
         }
 
