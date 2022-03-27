@@ -36,7 +36,11 @@ namespace Kebus {
 
              foreach (var item in orderedItems) // to fix: after closing this form and reopening it, Adding items throws Exception; idk why
                  OrderList.Items.Add(item);*/
-
+            ButtonManager.addedIds.Clear();
+            OrderList.Items.Clear();
+            ButtonManager.sum = 0;
+            TotalPriceLabel.Text = $"Suma: {ButtonManager.sum.ToString("c2", ButtonManager.ci)}";
+            ButtonManager.addedIds.Clear();
             OrderList.MouseDoubleClick += OrderList_MouseDoubleClick;
         }
 
