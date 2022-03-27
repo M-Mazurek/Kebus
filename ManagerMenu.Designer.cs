@@ -32,7 +32,6 @@
             this.TitleBar = new MaterialSkin.Controls.MaterialLabel();
             this.Sidebar = new System.Windows.Forms.Panel();
             this.AddDish = new MaterialSkin.Controls.MaterialButton();
-            this.CreateRaportButton = new MaterialSkin.Controls.MaterialButton();
             this.ShowMenuButton = new MaterialSkin.Controls.MaterialButton();
             this.ShowStatisticsButton = new MaterialSkin.Controls.MaterialButton();
             this.ShowOrdersButton = new MaterialSkin.Controls.MaterialButton();
@@ -108,7 +107,6 @@
             // Sidebar
             // 
             this.Sidebar.Controls.Add(this.AddDish);
-            this.Sidebar.Controls.Add(this.CreateRaportButton);
             this.Sidebar.Controls.Add(this.ShowMenuButton);
             this.Sidebar.Controls.Add(this.ShowStatisticsButton);
             this.Sidebar.Controls.Add(this.ShowOrdersButton);
@@ -137,27 +135,6 @@
             this.AddDish.UseAccentColor = false;
             this.AddDish.UseVisualStyleBackColor = true;
             this.AddDish.Click += new System.EventHandler(this.AddDish_Click);
-            // 
-            // CreateRaportButton
-            // 
-            this.CreateRaportButton.AutoSize = false;
-            this.CreateRaportButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CreateRaportButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.CreateRaportButton.Depth = 0;
-            this.CreateRaportButton.HighEmphasis = true;
-            this.CreateRaportButton.Icon = null;
-            this.CreateRaportButton.Location = new System.Drawing.Point(29, 561);
-            this.CreateRaportButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.CreateRaportButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CreateRaportButton.Name = "CreateRaportButton";
-            this.CreateRaportButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.CreateRaportButton.Size = new System.Drawing.Size(190, 40);
-            this.CreateRaportButton.TabIndex = 7;
-            this.CreateRaportButton.Text = "Utwórz raport";
-            this.CreateRaportButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.CreateRaportButton.UseAccentColor = false;
-            this.CreateRaportButton.UseVisualStyleBackColor = true;
-            this.CreateRaportButton.Click += new System.EventHandler(this.CreateRaportButton_Click);
             // 
             // ShowMenuButton
             // 
@@ -250,7 +227,6 @@
         private MaterialSkin.Controls.MaterialLabel TitleBar;
         private Panel Sidebar;
         private MaterialSkin.Controls.MaterialButton AddDish;
-        private MaterialSkin.Controls.MaterialButton CreateRaportButton;
         private MaterialSkin.Controls.MaterialButton ShowMenuButton;
         private MaterialSkin.Controls.MaterialButton ShowStatisticsButton;
         private MaterialSkin.Controls.MaterialButton ShowOrdersButton;

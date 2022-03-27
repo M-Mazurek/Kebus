@@ -40,7 +40,6 @@
             this.YesterdayText = new MaterialSkin.Controls.MaterialLabel();
             this.TitleBar = new MaterialSkin.Controls.MaterialLabel();
             this.Sidebar = new System.Windows.Forms.Panel();
-            this.CreateRaportButton = new MaterialSkin.Controls.MaterialButton();
             this.ShowMenuButton = new MaterialSkin.Controls.MaterialButton();
             this.ShowStatisticsButton = new MaterialSkin.Controls.MaterialButton();
             this.ShowOrdersButton = new MaterialSkin.Controls.MaterialButton();
@@ -164,7 +163,7 @@
             this.DailyStats.Size = new System.Drawing.Size(877, 182);
             this.DailyStats.TabIndex = 1;
             // 
-            // TodayAvg
+            // DailyAvg
             // 
             this.DailyAvg.AutoSize = true;
             this.DailyAvg.Depth = 0;
@@ -172,7 +171,7 @@
             this.DailyAvg.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
             this.DailyAvg.Location = new System.Drawing.Point(671, 76);
             this.DailyAvg.MouseState = MaterialSkin.MouseState.HOVER;
-            this.DailyAvg.Name = "TodayAvg";
+            this.DailyAvg.Name = "DailyAvg";
             this.DailyAvg.Size = new System.Drawing.Size(108, 29);
             this.DailyAvg.TabIndex = 5;
             this.DailyAvg.Text = "2000,00 zł";
@@ -257,7 +256,6 @@
             // 
             // Sidebar
             // 
-            this.Sidebar.Controls.Add(this.CreateRaportButton);
             this.Sidebar.Controls.Add(this.ShowMenuButton);
             this.Sidebar.Controls.Add(this.ShowStatisticsButton);
             this.Sidebar.Controls.Add(this.ShowOrdersButton);
@@ -265,27 +263,6 @@
             this.Sidebar.Name = "Sidebar";
             this.Sidebar.Size = new System.Drawing.Size(249, 627);
             this.Sidebar.TabIndex = 2;
-            // 
-            // CreateRaportButton
-            // 
-            this.CreateRaportButton.AutoSize = false;
-            this.CreateRaportButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CreateRaportButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.CreateRaportButton.Depth = 0;
-            this.CreateRaportButton.HighEmphasis = true;
-            this.CreateRaportButton.Icon = null;
-            this.CreateRaportButton.Location = new System.Drawing.Point(29, 561);
-            this.CreateRaportButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.CreateRaportButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CreateRaportButton.Name = "CreateRaportButton";
-            this.CreateRaportButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.CreateRaportButton.Size = new System.Drawing.Size(190, 40);
-            this.CreateRaportButton.TabIndex = 7;
-            this.CreateRaportButton.Text = "Utwórz raport";
-            this.CreateRaportButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.CreateRaportButton.UseAccentColor = false;
-            this.CreateRaportButton.UseVisualStyleBackColor = true;
-            this.CreateRaportButton.Click += new System.EventHandler(this.CreateRaportButton_Click);
             // 
             // ShowMenuButton
             // 
@@ -384,7 +361,6 @@
         private Panel DailyStats;
         private MaterialSkin.Controls.MaterialLabel YesterdayText;
         private Panel Sidebar;
-        private MaterialSkin.Controls.MaterialButton CreateRaportButton;
         private MaterialSkin.Controls.MaterialButton ShowMenuButton;
         private MaterialSkin.Controls.MaterialButton ShowStatisticsButton;
         private MaterialSkin.Controls.MaterialButton ShowOrdersButton;
