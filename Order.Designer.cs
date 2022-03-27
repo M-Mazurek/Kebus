@@ -34,11 +34,12 @@
             // 
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(88, 21);
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel1.Location = new System.Drawing.Point(82, 21);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(118, 19);
+            this.materialLabel1.Size = new System.Drawing.Size(149, 24);
             this.materialLabel1.TabIndex = 3;
             this.materialLabel1.Text = "Zamówienie { x }";
             // 
@@ -49,7 +50,7 @@
             this.materialButton1.Depth = 0;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(113, 358);
+            this.materialButton1.Location = new System.Drawing.Point(119, 358);
             this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
@@ -57,7 +58,7 @@
             this.materialButton1.Size = new System.Drawing.Size(71, 36);
             this.materialButton1.TabIndex = 2;
             this.materialButton1.Text = "WYDAJ";
-            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton1.UseAccentColor = true;
             this.materialButton1.UseVisualStyleBackColor = true;
             // 
@@ -85,18 +86,18 @@
             // Count
             // 
             this.Count.Text = "Ilość";
-            this.Count.Width = 100;
+            this.Count.Width = 80;
             // 
             // Item
             // 
             this.Item.Text = "Potrawa";
-            this.Item.Width = 140;
+            this.Item.Width = 253;
             // 
             // Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.materialListView1);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.materialButton1);
@@ -109,9 +110,9 @@
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
-        private MaterialSkin.Controls.MaterialListView materialListView1;
+        public MaterialSkin.Controls.MaterialLabel materialLabel1;
+        public MaterialSkin.Controls.MaterialButton materialButton1;
+        public MaterialSkin.Controls.MaterialListView materialListView1;
         private ColumnHeader Count;
         private ColumnHeader Item;
     }

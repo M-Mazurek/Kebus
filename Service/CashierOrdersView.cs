@@ -55,7 +55,7 @@ namespace Kebus {
                 }
                 for (int j = 0; j < es[i].items.Count(); j++) 
                 {
-                    listView.Items.Add(new ListViewItem(new string[] { es[i].id.Split("|")[0].PadLeft(3,'0'), es[i].created.ToString(), es[i].items[j].item.name, es[i].items[0].item.cost.ToString(), es[i].items[j].item.category.ToString(), es[i].items[j].state.ToString() }));
+                    listView.Items.Add(new ListViewItem(new string[] { es[i].id.Split("|")[0].PadLeft(3,'0'), es[i].created.ToString(), es[i].items[j].item.name, es[i].items[j].item.cost.ToString(), es[i].items[j].item.category.ToString(), es[i].items[j].state ? "Tak" : "Nie" }));
                 }
                 Panel.Controls.Add(listView);
             }

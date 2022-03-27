@@ -15,18 +15,36 @@ namespace Kebus {
     public partial class Cook : MaterialForm {
 
         private readonly MaterialSkinManager materialSkinManager;
-        
-        
-
-        public Cook(string positionName) {
+        private DataSyncer<(string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[]> syncer;
+        private int POS_X = 0;
+        private int POS_Y = 0;
+        public Cook(Kebus.MENU_ITEM_CATEGORY category) {
             InitializeComponent();
-            Text = $"Kebus System : Stanowisko {positionName}"; // polish is ..., so u have to use genetive : D
+            Text = $"Kebus System : Stanowisko {category switch { Kebus.MENU_ITEM_CATEGORY.FRIES => "Frytkarza", Kebus.MENU_ITEM_CATEGORY.KEBABS => "Kebusiarza", Kebus.MENU_ITEM_CATEGORY.DESSERTS_AND_DRINKS => "Drinarza",_ => throw(new("Unexpected category")),}}"; // polish is ..., so u have to use genetive : D
             materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Color.FromArgb(37, 46, 56), Color.FromArgb(37, 46, 56),
                 Color.FromArgb(143, 46, 56), Color.FromArgb(29, 41, 53), TextShade.WHITE);
+
+            syncer = new(Kebus.GetOrders, Draw);
+            syncer.RunWorkerAsync();
+        }
+
+        private void Draw() 
+        {
+            (string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[] es = syncer.CurrentData!;
+            for (int i = 0; i < es.Count(); i++) 
+            {
+                Order order = new() 
+                {
+                    Location = new(15 + (new Order().Width + 15) * i, 15),
+                };
+                
+                order.materialListView1.Items.Add(new ListViewItem(new string[] { "Fryta", "15" }));
+                Panel.Controls.Add(order);
+            }
         }
     }
 }
