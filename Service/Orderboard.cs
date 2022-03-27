@@ -45,7 +45,7 @@ namespace Kebus {
             materialSkinManager.ColorScheme = new ColorScheme(Color.FromArgb(37, 46, 56), Color.FromArgb(37, 46, 56),
                 Color.FromArgb(143, 46, 56), Color.FromArgb(29, 41, 53), TextShade.WHITE);
 
-            syncer = new(Kebus.GetOrders, Orderboard_Load);
+            syncer = new(Kebus.GetOrders, Orderboard_Load, this);
             syncer.RunWorkerAsync();
         }
 

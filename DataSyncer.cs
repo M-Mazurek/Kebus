@@ -14,28 +14,33 @@ namespace Kebus
         private const int REFRESH_RATE = 5000;
         private readonly Func<T> _dataGetter;
         private readonly Action _onSync;
+        private readonly Form _form;
 
         public T? CurrentData;
 
-        public DataSyncer(Func<T> dataGetter, Action onSync)
+        public DataSyncer(Func<T> dataGetter, Action onSync, Form form)
         {
             WorkerReportsProgress = true;
             WorkerSupportsCancellation = true;
             _dataGetter = dataGetter;
             _onSync = onSync;
+            _form = form;
             DoWork += DataSyncer_DoWork;
             ProgressChanged += DataSyncer_Sync;
         }
 
         private void DataSyncer_Sync(object? sender, ProgressChangedEventArgs e)
         {
-            T? newData = _dataGetter();
-            // nie jestem z tego dumny ale żaden comparer nie zwracał równości )
-            if (JsonConvert.SerializeObject(newData) != JsonConvert.SerializeObject(CurrentData))
-            {
-                CurrentData = newData;
-                _onSync();
-            }
+           Task.Run(() =>
+           {
+               T? newData = _dataGetter();
+               // nie jestem z tego dumny ale żaden comparer nie zwracał równości )
+               if (JsonConvert.SerializeObject(newData) != JsonConvert.SerializeObject(CurrentData))
+               {
+                   CurrentData = newData;
+                   _form.Invoke(_onSync);
+               }
+           });
         }
 
         private void DataSyncer_DoWork(object? sender, DoWorkEventArgs e)
