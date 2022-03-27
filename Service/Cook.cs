@@ -37,12 +37,13 @@ namespace Kebus {
 
         private void Draw() 
         {
+            Panel.Controls.Clear();
             (string id, DateTime created, ((uint id, string name, float cost, Kebus.MENU_ITEM_CATEGORY category) item, bool state)[] items)[] es = syncer.CurrentData!;
             //for (int i = 0; i < es.Count(); i++)
             int i = 0;
             foreach(var _es in es) 
             {
-                if (!_es.items.Any(x => x.item.category == category))
+                if (!_es.items.Any(x => x.item.category == category) || _es.items.Where(x => x.item.category == category).All(x => x.state == true))
                     continue;
                 Order order = new()
                 {
@@ -55,9 +56,11 @@ namespace Kebus {
                     {
                         order.materialLabel1.Text = $"Zamówienie: {_es.id.Split("|")[0].PadLeft(3, '0')}";
                         //order.Location = new(POS_X + (new Order().Width + POS_X) * i, POS_Y);
-                        order.materialListView1.Items.Add(new ListViewItem(new string[] { "1", _es.items[j].item.name }));
+                        order.materialListView1.Items.Add(new ListViewItem(new string[] { "1", _es.items[j].item.name}));
                         Panel.Controls.Add(order);
                         count++;
+                        uint x = (uint)j;
+                        order.materialButton1.Click += (sender, e) => Kebus.UpdateOrderItemState(uint.Parse(_es.id.Split("|")[0]), x);
                     }
                 }
                 i++;
