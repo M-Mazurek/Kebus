@@ -11,7 +11,7 @@ namespace Kebus
 {
     public class DataSyncer<T> : BackgroundWorker
     {
-        private const int REFRESH_RATE = 5000;
+        private const int REFRESH_RATE = 1000;
         private readonly Func<T> _dataGetter;
         private readonly Action _onSync;
         private readonly Form _form;
@@ -38,7 +38,11 @@ namespace Kebus
                if (JsonConvert.SerializeObject(newData) != JsonConvert.SerializeObject(CurrentData))
                {
                    CurrentData = newData;
-                   _form.Invoke(_onSync);
+                   try
+                   {
+                       _form.Invoke(_onSync);
+                   }
+                   catch { MessageBox.Show("Invoke B("); }
                }
            });
         }

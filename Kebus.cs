@@ -107,19 +107,19 @@ namespace Kebus
         }
 
         public static (string id, DateTime created, ((uint id, string name, float cost, MENU_ITEM_CATEGORY category) item, bool state)[] items) GetOrder(uint id) =>
-            ExplodeOrder(_orders.Find(MatchId(string.Join('|', id, DateOnly.FromDateTime(DateTime.Now)))).First());
+            ExplodeOrder(_orders.Find(MatchId(string.Join('|', id, DateOnly.FromDateTime(DateTime.Now).ToString().Replace('/', '.')))).First());
         public static (string id, DateTime created, ((uint id, string name, float cost, MENU_ITEM_CATEGORY category) item, bool state)[] items)[] GetOrders() =>
             _orders.Find(EMPTY_FILTER).ToList().Select(doc => ExplodeOrder(doc)).ToArray();
         public static void UpdateOrderItemState(uint orderId, uint index)
         {
-            _orders.UpdateOne(MatchId($"{orderId}|{DateOnly.FromDateTime(DateTime.Now)}"), 
+            _orders.UpdateOne(MatchId($"{orderId}|{DateOnly.FromDateTime(DateTime.Now).ToString().Replace('/', '.')}"), 
                 Builders<BsonDocument>.Update.Set(order => order["menu_items"][(int)index]["Item2"], true));
         }
 
         public static void ArchiviseOrder(uint orderId)
         {
-            _orderLogs.InsertOne(_orders.Find(MatchId($"{orderId}|{DateOnly.FromDateTime(DateTime.Now)}")).First());
-            _orders.DeleteOne(MatchId($"{orderId}|{DateOnly.FromDateTime(DateTime.Now)}"));
+            _orderLogs.InsertOne(_orders.Find(MatchId($"{orderId}|{DateOnly.FromDateTime(DateTime.Now).ToString().Replace('/', '.')}")).First());
+            _orders.DeleteOne(MatchId($"{orderId}|{DateOnly.FromDateTime(DateTime.Now).ToString().Replace('/', '.')}"));
         }
 
         public static (string id, DateTime created, ((uint id, string name, float cost, MENU_ITEM_CATEGORY category) item, bool state)[] items)[] GetArchivizedOrders() =>

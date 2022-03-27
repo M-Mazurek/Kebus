@@ -48,6 +48,7 @@ namespace Kebus {
         {
             MaterialListView item = sender as MaterialListView;
             ButtonManager.sum -= float.Parse(item.SelectedItems[0].SubItems[2].Text);
+            ButtonManager.addedIds.RemoveAt(item.SelectedItems[0].Index);
             TotalPriceLabel.Text = $"Suma: {ButtonManager.sum.ToString("c2", ButtonManager.ci)}";
 
             item.SelectedItems[0].Remove();
@@ -73,10 +74,12 @@ namespace Kebus {
 
         private void CloseOrderButton_Click(object sender, EventArgs e) 
         {
-            Hide();
+            /*Hide();
             SelfCheckout selfCheckout = new();
             selfCheckout.ShowDialog();
-            Show();
+            Show();*/
+            Close();
+            //suma nie resetuje sie uzywajac close();
         }
 
         private void SelfCheckoutOrderView_Load(object sender, EventArgs e)
